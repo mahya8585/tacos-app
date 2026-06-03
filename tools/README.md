@@ -18,7 +18,7 @@ powershell -ExecutionPolicy Bypass -File tools\seed-database.ps1 -Reset
 powershell -ExecutionPolicy Bypass -File tools\seed-database.ps1 -Server '(localdb)\MSSQLLocalDB' -Database 'TacosDb'
 ```
 
-投入される件数: Menus=4, Toppings=6, Orders=3, OrderItems=4, OrderItemToppings=4
+投入される件数: Menus=8, Toppings=6, Orders=3, OrderItems=4, OrderItemToppings=4
 
 ## スモークテスト
 
