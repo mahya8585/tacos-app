@@ -1,0 +1,217 @@
+/* ==========================================================
+   site.css — タコスデリバリー テーマスタイル
+   Bootstrap 4.6.2 ベース
+   ========================================================== */
+
+/* ---------- カラーパレット ---------- */
+:root {
+    --taco-orange: #e8631a;
+    --taco-dark:   #b54a0e;
+    --taco-light:  #fdf3ec;
+    --taco-gold:   #f5a623;
+    --taco-green:  #3a8a3a;
+}
+
+/* ---------- ナビゲーション ---------- */
+.bg-taco {
+    background-color: var(--taco-orange) !important;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.cart-count {
+    font-size: 0.75rem;
+    vertical-align: middle;
+}
+
+/* ---------- 見出し ---------- */
+.taco-heading {
+    color: var(--taco-orange);
+    font-weight: 700;
+}
+
+.text-taco {
+    color: var(--taco-orange);
+}
+
+/* ---------- ボタン ---------- */
+.btn-taco {
+    background-color: var(--taco-orange);
+    border-color: var(--taco-dark);
+    color: #fff;
+    font-weight: 600;
+}
+.btn-taco:hover,
+.btn-taco:focus {
+    background-color: var(--taco-dark);
+    border-color: var(--taco-dark);
+    color: #fff;
+}
+
+/* ---------- メニューカード ---------- */
+.menu-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    border: none;
+}
+.menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+}
+
+.menu-img {
+    height: 180px;
+    object-fit: cover;
+    background: var(--taco-light);
+}
+
+.price-tag {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--taco-orange);
+}
+
+/* ---------- カートページ ---------- */
+.cart-item {
+    border-left: 4px solid var(--taco-orange);
+    border-radius: 8px;
+}
+
+.qty-control {
+    max-width: 120px;
+}
+
+/* ---------- 4ステップ進捗バー ---------- */
+.status-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 0 auto;
+    width: 64px;
+}
+
+.step-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #dee2e6;
+    color: #6c757d;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #dee2e6;
+    transition: background 0.4s, border-color 0.4s, color 0.4s;
+}
+
+.step-label {
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 6px;
+    color: #6c757d;
+    transition: color 0.4s;
+}
+
+.step-line {
+    flex: 1;
+    height: 4px;
+    background: #dee2e6;
+    margin: 0 4px;
+    margin-bottom: 22px;
+    border-radius: 2px;
+    transition: background 0.4s;
+}
+
+/* 完了済みステップ */
+.step-item.completed .step-circle {
+    background: var(--taco-green);
+    border-color: var(--taco-green);
+    color: #fff;
+}
+.step-item.completed .step-label {
+    color: var(--taco-green);
+}
+.step-item.completed + .step-line {
+    background: var(--taco-green);
+}
+
+/* アクティブステップ */
+.step-item.active .step-circle {
+    background: var(--taco-orange);
+    border-color: var(--taco-orange);
+    color: #fff;
+    animation: pulse-taco 1.4s infinite;
+}
+.step-item.active .step-label {
+    color: var(--taco-orange);
+    font-weight: 700;
+}
+
+@keyframes pulse-taco {
+    0%   { box-shadow: 0 0 0 0 rgba(232, 99, 26, 0.5); }
+    70%  { box-shadow: 0 0 0 10px rgba(232, 99, 26, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(232, 99, 26, 0); }
+}
+
+/* ---------- ステータスアラート ---------- */
+.status-alert {
+    font-size: 1.05rem;
+    border-radius: 10px;
+}
+
+/* ---------- トースト通知 ---------- */
+.taco-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--taco-orange);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.25s, transform 0.25s;
+    z-index: 9999;
+}
+.taco-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- フッター ---------- */
+.footer {
+    border-top: 1px solid #dee2e6;
+}
+
+/* ---------- レスポンシブ調整 ---------- */
+@media (max-width: 576px) {
+    .menu-img {
+        height: 140px;
+    }
+    .step-item {
+        width: 48px;
+    }
+    .step-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    .step-label {
+        font-size: 0.65rem;
+    }
+}

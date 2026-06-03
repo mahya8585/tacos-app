@@ -1,0 +1,27 @@
+@page "{id:int}"
+@model TacosApp.Admin.Pages.Menus.DeleteModel
+@{
+    ViewData["Title"] = "メニュー削除確認";
+}
+
+@if (Model.Menu is null)
+{
+    <div class="alert alert-warning">メニューが見つかりません。</div>
+    <a class="btn btn-secondary" asp-page="Index">一覧に戻る</a>
+    return;
+}
+
+<h1>メニュー削除</h1>
+<div class="alert alert-danger">この操作は取り消せません。本当に削除しますか？</div>
+
+<dl class="row col-md-6">
+    <dt class="col-sm-4">メニュー名</dt><dd class="col-sm-8">@Model.Menu.Name</dd>
+    <dt class="col-sm-4">価格</dt><dd class="col-sm-8">¥@Model.Menu.Price.ToString("N0")</dd>
+    <dt class="col-sm-4">提供中</dt><dd class="col-sm-8">@(Model.Menu.IsAvailable ? "はい" : "いいえ")</dd>
+</dl>
+
+<form method="post">
+    <input type="hidden" asp-for="Menu.MenuId" />
+    <button type="submit" class="btn btn-danger">削除する</button>
+    <a asp-page="Index" class="btn btn-secondary">キャンセル</a>
+</form>

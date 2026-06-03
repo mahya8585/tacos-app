@@ -1,0 +1,101 @@
+@page
+@model TacosApp.Admin.Pages.Orders.IndexModel
+@using TacosApp.Admin.Models
+@{
+    ViewData["Title"] = "注文管理";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">注文管理</h1>
+        <p class="page-subtitle">注文の進行状況をリアルタイムに確認・更新できます</p>
+    </div>
+    <form method="get" class="d-flex gap-2 align-items-center">
+        <label class="form-label mb-0 text-nowrap">ステータス:</label>
+        <select name="filter" class="form-select form-select-sm" onchange="this.form.submit()">
+            <option value="">すべて</option>
+            @foreach (var s in Enum.GetValues<OrderStatus>())
+            {
+                <option value="@((int)s)" selected="@(Model.Filter == s)">@s</option>
+            }
+        </select>
+    </form>
+</div>
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0 align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>注文番号</th>
+                    <th>顧客</th>
+                    <th>電話</th>
+                    <th>合計</th>
+                    <th>ステータス</th>
+                    <th>注文日時</th>
+                    <th class="text-end">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var o in Model.Orders)
+                {
+                    <tr data-order-id="@o.OrderId">
+                        <td><code>@o.OrderNumber</code></td>
+                        <td>@o.CustomerName</td>
+                        <td>@o.Phone</td>
+                        <td>¥@o.TotalAmount.ToString("N0")</td>
+                        <td>
+                            <span class="badge @StatusBadge(o.Status) status-badge">@o.Status</span>
+                        </td>
+                        <td>@o.OrderedAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm")</td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-primary" asp-page="Details" asp-route-id="@o.OrderId">
+                                <i class="bi bi-eye me-1"></i>詳細
+                            </a>
+                        </td>
+                    </tr>
+                }
+                @if (Model.Orders.Count == 0)
+                {
+                    <tr><td colspan="7" class="text-center text-muted py-4">該当する注文はありません</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@functions {
+    static string StatusBadge(OrderStatus s) => s switch
+    {
+        OrderStatus.Received => "bg-warning",
+        OrderStatus.Preparing => "bg-info",
+        OrderStatus.OnDelivery => "bg-primary",
+        OrderStatus.Delivered => "bg-success",
+        _ => "bg-secondary"
+    };
+}
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl('/hubs/admin-orders')
+            .withAutomaticReconnect()
+            .build();
+
+        connection.on('orderStatusChanged', payload => {
+            const row = document.querySelector(`tr[data-order-id="${payload.orderId}"]`);
+            if (row) {
+                const badge = row.querySelector('.status-badge');
+                if (badge) {
+                    badge.textContent = payload.statusLabel;
+                    badge.className = 'badge status-badge bg-secondary';
+                }
+                row.classList.add('table-warning');
+                setTimeout(() => row.classList.remove('table-warning'), 2500);
+            }
+        });
+
+        connection.start().catch(err => console.error('SignalR connection failed:', err));
+    </script>
+}

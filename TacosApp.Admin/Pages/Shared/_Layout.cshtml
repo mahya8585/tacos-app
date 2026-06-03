@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TacosApp Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@@400;500;600;700&family=Noto+Sans+JP:wght@@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TacosApp.Admin.styles.css" asp-append-version="true" />
+</head>
+<body>
+@{
+    var isLoggedIn = User.Identity?.IsAuthenticated == true;
+    var currentPath = Context.Request.Path.Value ?? "";
+    bool IsActive(params string[] prefixes) =>
+        prefixes.Any(p => currentPath.Equals(p, StringComparison.OrdinalIgnoreCase) || currentPath.StartsWith(p + "/", StringComparison.OrdinalIgnoreCase));
+}
+
+@if (isLoggedIn)
+{
+    <div class="app-shell">
+        <aside class="app-sidebar">
+            <div class="app-brand">
+                <span class="brand-mark">🌮</span>
+                <div class="brand-text">
+                    <strong>TacosApp</strong>
+                    <small>Admin Console</small>
+                </div>
+            </div>
+            <nav class="app-nav">
+                <a class="app-nav-link @(IsActive("/") ? "active" : "")" asp-page="/Index">
+                    <i class="bi bi-speedometer2"></i><span>ダッシュボード</span>
+                </a>
+                <a class="app-nav-link @(IsActive("/Orders") ? "active" : "")" asp-page="/Orders/Index">
+                    <i class="bi bi-receipt"></i><span>注文管理</span>
+                </a>
+                <a class="app-nav-link @(IsActive("/Menus") ? "active" : "")" asp-page="/Menus/Index">
+                    <i class="bi bi-grid"></i><span>メニュー管理</span>
+                </a>
+                <a class="app-nav-link @(IsActive("/Toppings") ? "active" : "")" asp-page="/Toppings/Index">
+                    <i class="bi bi-stars"></i><span>トッピング管理</span>
+                </a>
+            </nav>
+            <div class="app-sidebar-footer">
+                <small>v1.0 &middot; .NET 10</small>
+            </div>
+        </aside>
+
+        <div class="app-main">
+            <header class="app-topbar">
+                <button class="btn btn-link app-sidebar-toggle d-lg-none" type="button" aria-label="メニュー">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="app-topbar-title">@ViewData["Title"]</div>
+                <div class="app-topbar-actions">
+                    <partial name="_LoginPartial" />
+                </div>
+            </header>
+
+            <main class="app-content" role="main">
+                @RenderBody()
+            </main>
+
+            <footer class="app-footer">
+                &copy; 2026 TacosApp Admin &middot; Razor Pages + Bootstrap 5
+            </footer>
+        </div>
+    </div>
+}
+else
+{
+    <main class="auth-shell">
+        @RenderBody()
+    </main>
+}
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        // Mobile sidebar toggle
+        document.querySelector('.app-sidebar-toggle')?.addEventListener('click', () => {
+            document.querySelector('.app-sidebar')?.classList.toggle('is-open');
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

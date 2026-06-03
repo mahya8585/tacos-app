@@ -1,0 +1,61 @@
+@page
+@model TacosApp.Admin.Pages.Menus.IndexModel
+@{
+    ViewData["Title"] = "メニュー管理";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">メニュー管理</h1>
+        <p class="page-subtitle">提供中のメニューと価格・表示順を管理します</p>
+    </div>
+    <div class="page-actions">
+        <a class="btn btn-primary" asp-page="Create"><i class="bi bi-plus-lg me-1"></i>新規メニュー</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0 align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>表示順</th>
+                    <th>メニュー名</th>
+                    <th>説明</th>
+                    <th class="text-end">価格</th>
+                    <th>提供中</th>
+                    <th class="text-end">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var m in Model.Menus)
+                {
+                    <tr>
+                        <td>@m.DisplayOrder</td>
+                        <td><strong>@m.Name</strong></td>
+                        <td class="text-muted small">@m.Description</td>
+                        <td class="text-end">¥@m.Price.ToString("N0")</td>
+                        <td>
+                            @if (m.IsAvailable)
+                            {
+                                <span class="badge bg-success">提供中</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">休止中</span>
+                            }
+                        </td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-primary" asp-page="Edit" asp-route-id="@m.MenuId"><i class="bi bi-pencil me-1"></i>編集</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-page="Delete" asp-route-id="@m.MenuId"><i class="bi bi-trash me-1"></i>削除</a>
+                        </td>
+                    </tr>
+                }
+                @if (Model.Menus.Count == 0)
+                {
+                    <tr><td colspan="6" class="text-center text-muted py-4">メニューはまだ登録されていません</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

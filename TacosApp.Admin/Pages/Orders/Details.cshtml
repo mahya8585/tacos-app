@@ -1,0 +1,140 @@
+@page "{id:int}"
+@model TacosApp.Admin.Pages.Orders.DetailsModel
+@using TacosApp.Admin.Models
+@{
+    ViewData["Title"] = $"注文 {Model.Order?.OrderNumber}";
+}
+
+@if (Model.Order is null)
+{
+    <div class="alert alert-warning">注文が見つかりません。</div>
+    <a class="btn btn-secondary" asp-page="Index">一覧に戻る</a>
+    return;
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">注文詳細</h1>
+        <p class="page-subtitle">注文 <code>@Model.Order.OrderNumber</code> のステータスを更新します</p>
+    </div>
+    <div class="page-actions">
+        <a class="btn btn-outline-secondary" asp-page="Index"><i class="bi bi-arrow-left me-1"></i>一覧に戻る</a>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header">注文情報</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">注文番号</dt>
+                    <dd class="col-sm-8"><code>@Model.Order.OrderNumber</code></dd>
+
+                    <dt class="col-sm-4">合計金額</dt>
+                    <dd class="col-sm-8">¥@Model.Order.TotalAmount.ToString("N0")</dd>
+
+                    <dt class="col-sm-4">ステータス</dt>
+                    <dd class="col-sm-8"><span class="badge bg-secondary" id="status-badge">@Model.Order.Status</span></dd>
+
+                    <dt class="col-sm-4">注文日時</dt>
+                    <dd class="col-sm-8">@Model.Order.OrderedAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm:ss")</dd>
+
+                    <dt class="col-sm-4">更新日時</dt>
+                    <dd class="col-sm-8" id="updated-at">@Model.Order.UpdatedAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm:ss")</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header">配達情報</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">顧客名</dt>
+                    <dd class="col-sm-8">@Model.Order.CustomerName</dd>
+
+                    <dt class="col-sm-4">電話番号</dt>
+                    <dd class="col-sm-8">@Model.Order.Phone</dd>
+
+                    <dt class="col-sm-4">配達先住所</dt>
+                    <dd class="col-sm-8">@Model.Order.DeliveryAddress</dd>
+
+                    <dt class="col-sm-4">配達メモ</dt>
+                    <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Order.DeliveryNote) ? "（なし）" : Model.Order.DeliveryNote)</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">注文明細</div>
+    <div class="table-responsive">
+        <table class="table mb-0">
+            <thead class="table-light">
+                <tr><th>メニュー</th><th class="text-end">単価</th><th class="text-center">数量</th><th>トッピング</th><th class="text-end">小計</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Order.Items)
+                {
+                    var subTotal = item.Quantity * (item.UnitPrice + item.Toppings.Sum(t => t.UnitPrice));
+                    <tr>
+                        <td>@(item.Menu?.Name ?? "(削除済)")</td>
+                        <td class="text-end">¥@item.UnitPrice.ToString("N0")</td>
+                        <td class="text-center">@item.Quantity</td>
+                        <td>
+                            @if (item.Toppings.Count == 0)
+                            {
+                                <span class="text-muted">なし</span>
+                            }
+                            else
+                            {
+                                @string.Join("、", item.Toppings.Select(t => $"{t.Topping?.Name}(+¥{t.UnitPrice:N0})"))
+                            }
+                        </td>
+                        <td class="text-end">¥@subTotal.ToString("N0")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">ステータス更新</div>
+    <div class="card-body">
+        <form method="post" class="d-flex gap-2 align-items-center">
+            <input type="hidden" asp-for="Order.OrderId" />
+            <label class="form-label mb-0">新しいステータス:</label>
+            <select asp-for="NewStatus" class="form-select" style="max-width: 220px;">
+                @foreach (var s in Enum.GetValues<OrderStatus>())
+                {
+                    <option value="@((int)s)">@s</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary">更新</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+    <script>
+        const orderId = @Model.Order.OrderId;
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl('/hubs/admin-orders')
+            .withAutomaticReconnect()
+            .build();
+
+        connection.on('orderStatusChanged', payload => {
+            if (payload.orderId !== orderId) return;
+            const badge = document.getElementById('status-badge');
+            const updated = document.getElementById('updated-at');
+            if (badge) badge.textContent = payload.statusLabel;
+            if (updated) updated.textContent = new Date(payload.updatedAt).toLocaleString();
+        });
+
+        connection.start().catch(err => console.error('SignalR connection failed:', err));
+    </script>
+}

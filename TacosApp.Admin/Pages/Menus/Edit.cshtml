@@ -1,0 +1,51 @@
+@page "{id:int}"
+@model TacosApp.Admin.Pages.Menus.EditModel
+@{
+    ViewData["Title"] = "メニュー編集";
+}
+
+<h1>メニュー編集</h1>
+
+<form method="post" class="col-md-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Input.MenuId" />
+
+    <div class="mb-3">
+        <label asp-for="Input.Name" class="form-label">メニュー名</label>
+        <input asp-for="Input.Name" class="form-control" />
+        <span asp-validation-for="Input.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Input.Description" class="form-label">説明</label>
+        <textarea asp-for="Input.Description" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Input.Price" class="form-label">価格（円）</label>
+        <input asp-for="Input.Price" class="form-control" type="number" step="1" min="0" />
+        <span asp-validation-for="Input.Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Input.ImageUrl" class="form-label">画像URL</label>
+        <input asp-for="Input.ImageUrl" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Input.DisplayOrder" class="form-label">表示順</label>
+        <input asp-for="Input.DisplayOrder" class="form-control" type="number" />
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="Input.IsAvailable" class="form-check-input" />
+        <label asp-for="Input.IsAvailable" class="form-check-label">提供中</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">保存</button>
+    <a asp-page="Index" class="btn btn-secondary">キャンセル</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
