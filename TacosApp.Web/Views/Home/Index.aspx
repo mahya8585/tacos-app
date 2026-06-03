@@ -1,0 +1,99 @@
+<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.master" Inherits="System.Web.Mvc.ViewPage" ResponseEncoding="utf-8" %>
+<%@ Import Namespace="System" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="TacosApp.Web.Models.ViewModels" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <% var vm = (MenuIndexViewModel)Model; %>
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h1 class="taco-heading">🌮 タコスメニュー</h1>
+            <p class="lead text-muted">タコスに加えて、サイドディッシュやドリンクも一緒に選んでカートへ追加してください</p>
+        </div>
+    </div>
+
+    <div class="row" id="menuGrid">
+        <% foreach (var menu in vm.Menus) { %>
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card menu-card h-100 shadow-sm">
+                 <img src="<%: string.IsNullOrEmpty(menu.ImageUrl) ? "/Content/images/taco-placeholder.jpg" : menu.ImageUrl %>"
+                     class="card-img-top menu-img" alt="<%: menu.Name %>" />
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"><%: menu.Name %></h5>
+                    <p class="card-text text-muted small flex-grow-1"><%: menu.Description %></p>
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <span class="price-tag">¥<%: menu.Price.ToString("N0") %></span>
+                        <button class="btn btn-taco btn-sm add-to-cart-btn"
+                                data-menu-id="<%: menu.MenuId %>"
+                                data-menu-name="<%: menu.Name %>"
+                                data-menu-price="<%: menu.Price %>"
+                                data-toggle="modal"
+                                data-target="#toppingModal">
+                            カートに追加
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+
+    <div class="d-none"><%: Html.AntiForgeryToken() %></div>
+
+    <div class="modal fade" id="toppingModal" tabindex="-1" role="dialog" aria-labelledby="toppingModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-taco text-white">
+                    <h5 class="modal-title" id="toppingModalLabel">🌶 トッピングを選択</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalMenuName" class="font-weight-bold mb-3"></p>
+                    <div id="toppingList">
+                        <% foreach (var topping in vm.Toppings) { %>
+                        <div class="form-check topping-item mb-2">
+                            <input class="form-check-input topping-check" type="checkbox"
+                                   id="topping_<%: topping.ToppingId %>"
+                                   value="<%: topping.ToppingId %>"
+                                   data-name="<%: topping.Name %>"
+                                   data-price="<%: topping.Price %>" />
+                            <label class="form-check-label w-100" for="topping_<%: topping.ToppingId %>">
+                                <%: topping.Name %>
+                                <span class="badge badge-secondary float-right">+¥<%: topping.Price.ToString("N0") %></span>
+                            </label>
+                        </div>
+                        <% } %>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between">
+                        <span>数量:</span>
+                        <div class="input-group qty-control">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary btn-sm qty-minus" type="button">－</button>
+                            </div>
+                            <input type="number" class="form-control form-control-sm text-center" id="itemQty" value="1" min="1" max="10" />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-sm qty-plus" type="button">＋</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right mt-2">
+                        <strong>小計: <span id="itemSubTotal">¥0</span></strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-taco" id="confirmAddToCart">カートに追加する</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ScriptsContent" runat="server">
+    <%: System.Web.Optimization.Scripts.Render("~/bundles/tacos-cart") %>
+    <script>
+        $(function () {
+            TacosCart.init('<%: Url.Action("AddToCart", "Order") %>', '<%: Url.Action("Cart", "Order") %>');
+        });
+    </script>
+</asp:Content>

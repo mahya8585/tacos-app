@@ -68,6 +68,13 @@
     height: 180px;
     object-fit: cover;
     background: var(--taco-light);
+    transition: transform 0.25s ease, filter 0.25s ease;
+    filter: saturate(1.08) contrast(1.06) brightness(0.97);
+}
+
+.menu-card:hover .menu-img {
+    transform: scale(1.05);
+    filter: saturate(1.15) contrast(1.1) brightness(1);
 }
 
 .price-tag {

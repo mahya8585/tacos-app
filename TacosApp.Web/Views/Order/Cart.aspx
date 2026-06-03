@@ -1,0 +1,92 @@
+<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.master" Inherits="System.Web.Mvc.ViewPage" ResponseEncoding="utf-8" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="TacosApp.Web.Models.ViewModels" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <% var vm = (CartViewModel)Model; %>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="taco-heading mb-4">🛒 カートの中身</h2>
+        </div>
+    </div>
+
+    <% if (vm.Items.Count == 0) { %>
+    <div class="row">
+        <div class="col text-center py-5">
+            <p class="lead text-muted">カートは空です</p>
+            <a href="<%: Url.Action("Index", "Home") %>" class="btn btn-taco">メニューへ戻る</a>
+        </div>
+    </div>
+    <% } else { %>
+    <div class="row">
+        <div class="col-lg-8">
+            <div id="cartItems">
+                <% foreach (var item in vm.Items) { %>
+                <div class="card cart-item mb-3" data-item-key="<%: item.ItemKey %>">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1"><%: item.MenuName %></h6>
+                                <small class="text-muted">¥<%: item.MenuPrice.ToString("N0") %> × <%: item.Quantity %></small>
+                                <% if (item.Toppings.Count > 0) { %>
+                                <div class="mt-1">
+                                    <% foreach (var t in item.Toppings) { %>
+                                        <span class="badge badge-light">+<%: t.Name %> ¥<%: t.Price.ToString("N0") %></span>
+                                    <% } %>
+                                </div>
+                                <% } %>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-weight-bold">¥<%: item.SubTotal.ToString("N0") %></div>
+                                <div class="input-group qty-control mt-2">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary btn-sm cart-qty-minus" type="button" data-item-key="<%: item.ItemKey %>">－</button>
+                                    </div>
+                                    <input type="number" class="form-control form-control-sm text-center cart-qty-input"
+                                           value="<%: item.Quantity %>" min="1" max="10"
+                                           data-item-key="<%: item.ItemKey %>" />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-sm cart-qty-plus" type="button" data-item-key="<%: item.ItemKey %>">＋</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-link btn-sm text-danger remove-item mt-1" data-item-key="<%: item.ItemKey %>">削除</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">ご注文合計</h5>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>小計</span>
+                        <span id="cartTotal">¥<%: vm.Total.ToString("N0") %></span>
+                    </div>
+                    <div class="d-flex justify-content-between font-weight-bold border-top pt-2">
+                        <span>合計（税込）</span>
+                        <span id="cartGrandTotal">¥<%: vm.Total.ToString("N0") %></span>
+                    </div>
+                    <p class="text-muted small mt-2">お支払い方法：代金引換</p>
+                    <a href="<%: Url.Action("Checkout", "Order") %>" class="btn btn-taco btn-block mt-3">ご注文手続きへ →</a>
+                    <a href="<%: Url.Action("Index", "Home") %>" class="btn btn-outline-secondary btn-block mt-2">メニューへ戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ScriptsContent" runat="server">
+    <%: System.Web.Optimization.Scripts.Render("~/bundles/tacos-cart") %>
+    <script>
+        $(function () {
+            TacosCart.initCart(
+                '<%: Url.Action("RemoveFromCart", "Order") %>',
+                '<%: Url.Action("UpdateQuantity", "Order") %>'
+            );
+        });
+    </script>
+</asp:Content>

@@ -189,14 +189,14 @@ SET NOCOUNT ON;
 SET IDENTITY_INSERT dbo.Menus ON;
 MERGE dbo.Menus AS T
 USING (VALUES
-    (1, N'クラシックビーフタコス', N'こだわりのスパイスで味付けしたビーフと新鮮野菜のタコス', 350, N'/Content/images/beef-taco.svg',    1, 1),
-    (2, N'チキンタコス',           N'やわらかグリルチキンとアボカドソースのタコス',                 320, N'/Content/images/chicken-taco.svg', 1, 2),
-    (3, N'シュリンプタコス',       N'プリプリのエビとマンゴーサルサのタコス',                       380, N'/Content/images/shrimp-taco.svg',  1, 3),
-    (4, N'ベジタコス',             N'彩り豊かな野菜とブラックビーンズのタコス',                     300, N'/Content/images/veg-taco.svg',     1, 4),
-    (5, N'チーズケサディーヤ',     N'とろけるチーズをたっぷり挟んだ香ばしいサイドディッシュ',           280, N'/Content/images/quesadilla.svg',    1, 5),
-    (6, N'メキシカンナチョス',     N'クリスピーなチップスにサルサとチーズを重ねた人気サイド',         260, N'/Content/images/nachos.svg',        1, 6),
-    (7, N'ライムソーダ',           N'爽やかなライムの酸味が効いた炭酸ドリンク',                     180, N'/Content/images/lime-soda.svg',     1, 7),
-    (8, N'マンゴーラッシー',       N'濃厚なマンゴーの甘みとヨーグルトのまろやかさが楽しいドリンク',   220, N'/Content/images/mango-lassi.svg',   1, 8)
+    (1, N'クラシックビーフタコス', N'こだわりのスパイスで味付けしたビーフと新鮮野菜のタコス', 350, N'/Content/images/beef-taco.jpg',    1, 1),
+    (2, N'チキンタコス',           N'やわらかグリルチキンとアボカドソースのタコス',                 320, N'/Content/images/chicken-taco.jpg', 1, 2),
+    (3, N'シュリンプタコス',       N'プリプリのエビとマンゴーサルサのタコス',                       380, N'/Content/images/shrimp-taco.jpg',  1, 3),
+    (4, N'ベジタコス',             N'彩り豊かな野菜とブラックビーンズのタコス',                     300, N'/Content/images/veg-taco.jpg',     1, 4),
+    (5, N'チーズケサディーヤ',     N'とろけるチーズをたっぷり挟んだ香ばしいサイドディッシュ',           560, N'/Content/images/quesadilla.jpg',    1, 5),
+    (6, N'メキシカンナチョス',     N'クリスピーなチップスにサルサとチーズを重ねた人気サイド',         260, N'/Content/images/nachos.jpg',        1, 6),
+    (7, N'ライムソーダ',           N'爽やかなライムの酸味が効いた炭酸ドリンク',                     270, N'/Content/images/lime-soda.jpg',     1, 7),
+    (8, N'マンゴーラッシー',       N'濃厚なマンゴーの甘みとヨーグルトのまろやかさが楽しいドリンク',   440, N'/Content/images/mango-lassi.jpg',   1, 8)
 ) AS S (MenuId, Name, Description, Price, ImageUrl, IsAvailable, DisplayOrder)
 ON T.MenuId = S.MenuId
 WHEN MATCHED THEN UPDATE SET

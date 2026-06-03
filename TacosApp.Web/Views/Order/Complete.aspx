@@ -1,0 +1,22 @@
+<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.master" Inherits="System.Web.Mvc.ViewPage" ResponseEncoding="utf-8" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="row justify-content-center">
+        <div class="col-md-7 text-center py-5">
+            <div class="mb-4" style="font-size: 5rem;">🌮</div>
+            <h2 class="taco-heading">ご注文ありがとうございます！</h2>
+            <p class="lead">注文番号: <strong class="text-taco"><%: ViewBag.OrderNumber %></strong></p>
+            <p class="text-muted">ただいまご注文を受け付けました。<br />調理状況はリアルタイムで確認できます。</p>
+
+            <div class="mt-4">
+                <a href="<%: Url.Action("Index", "Status", new { orderNumber = ViewBag.OrderNumber }) %>"
+                   class="btn btn-taco btn-lg mr-2">
+                    📡 配達状況を確認する
+                </a>
+                <a href="<%: Url.Action("Index", "Home") %>" class="btn btn-outline-secondary btn-lg">
+                    メニューへ戻る
+                </a>
+            </div>
+            <p class="text-muted small mt-4">お届け目安：30〜60分 ／ お支払い：代金引換</p>
+        </div>
+    </div>
+</asp:Content>

@@ -54,6 +54,46 @@ namespace TacosApp.Web.Data.Migrations
                     ImageUrl = "/Content/images/veg-taco.jpg",
                     IsAvailable = true,
                     DisplayOrder = 4
+                },
+                new Menu
+                {
+                    MenuId = 5,
+                    Name = "チーズケサディーヤ",
+                    Description = "とろけるチーズをたっぷり挟んだ香ばしいサイドディッシュ",
+                    Price = 560,
+                    ImageUrl = "/Content/images/quesadilla.jpg",
+                    IsAvailable = true,
+                    DisplayOrder = 5
+                },
+                new Menu
+                {
+                    MenuId = 6,
+                    Name = "メキシカンナチョス",
+                    Description = "クリスピーなチップスにサルサとチーズを重ねた人気サイド",
+                    Price = 260,
+                    ImageUrl = "/Content/images/nachos.jpg",
+                    IsAvailable = true,
+                    DisplayOrder = 6
+                },
+                new Menu
+                {
+                    MenuId = 7,
+                    Name = "ライムソーダ",
+                    Description = "爽やかなライムの酸味が効いた炭酸ドリンク",
+                    Price = 270,
+                    ImageUrl = "/Content/images/lime-soda.jpg",
+                    IsAvailable = true,
+                    DisplayOrder = 7
+                },
+                new Menu
+                {
+                    MenuId = 8,
+                    Name = "マンゴーラッシー",
+                    Description = "濃厚なマンゴーの甘みとヨーグルトのまろやかさが楽しいドリンク",
+                    Price = 440,
+                    ImageUrl = "/Content/images/mango-lassi.jpg",
+                    IsAvailable = true,
+                    DisplayOrder = 8
                 }
             );
 

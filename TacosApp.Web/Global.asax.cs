@@ -13,6 +13,9 @@ namespace TacosApp.Web
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new WebFormViewEngine());
+            ViewEngines.Engines.Add(new RazorViewEngine());
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
