@@ -1,0 +1,1357 @@
+{
+  "version": "1.0.0",
+  "producer": ".NET AppCAT CLI",
+  "metadata": {
+    "analysisStartTime": "2026-06-04T03:46:42.9598207Z",
+    "analysisEndTime": "2026-06-04T03:46:51.9146906Z",
+    "privacyMode": "Protected",
+    "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2271074",
+    "targetIds": [
+      "AppService.Windows",
+      "AppService.Linux",
+      "AKS.Linux",
+      "AKS.Windows",
+      "ACA",
+      "AppServiceContainer.Linux",
+      "AppServiceContainer.Windows",
+      "AppServiceManagedInstance.Windows"
+    ],
+    "targetDisplayNames": [
+      "Azure App Service",
+      "Azure Kubernetes Service",
+      "Azure Container Apps",
+      "Azure App Service Container",
+      "Azure App Service Managed Instance"
+    ],
+    "os": [
+      "windows",
+      "linux"
+    ]
+  },
+  "summary": {
+    "totalProjects": 2,
+    "totalIssues": 12,
+    "totalIncidents": 24,
+    "totalEffort": 60,
+    "charts": {
+      "severity": {
+        "mandatory": 1,
+        "optional": 15,
+        "potential": 8,
+        "information": 0
+      },
+      "category": {
+        "Scale": 8,
+        "Configuration": 3,
+        "Connection": 2,
+        "Security": 5,
+        "Database": 2,
+        "Identity": 1,
+        "Local": 1,
+        "Perf": 2
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "TacosApp.Admin\\TacosApp.Admin.csproj",
+      "issues": 5,
+      "storyPoints": 27,
+      "properties": {
+        "appName": "TacosApp.Admin",
+        "frameworks": [
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ]
+      },
+      "incidents": [
+        {
+          "ruleId": "Scale.0001",
+          "incidentId": "f98bf4a1-265e-47b3-82cb-e380ee71d1a7",
+          "location": "TacosApp.Admin\\TacosApp.Admin.csproj",
+          "locationKind": "File",
+          "snippet": "\u30EB\u30FC\u30EB\u306B\u4E00\u81F4\u3059\u308B 35 \u500B\u306E\u30D5\u30A1\u30A4\u30EB\u304C\u898B\u3064\u304B\u308A\u307E\u3057\u305F\u3002\r\n\r\nwwwroot\\css\\site.css\r\nwwwroot\\favicon.ico\r\nwwwroot\\js\\site.js\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css\r\nwwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css\r\nwwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js\r\nwwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js\r\nwwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js\r\nwwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js\r\nwwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js\r\nwwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js\r\nwwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js\r\nwwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js\r\nwwwroot\\lib\\jquery-validation\\dist\\additional-methods.js\r\nwwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js\r\nwwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js\r\nwwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js\r\nwwwroot\\lib\\jquery\\dist\\jquery.js\r\nwwwroot\\lib\\jquery\\dist\\jquery.min.js\r\nwwwroot\\lib\\jquery\\dist\\jquery.slim.js\r\nwwwroot\\lib\\jquery\\dist\\jquery.slim.min.js\r\n",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Configuration.0003",
+          "incidentId": "e0652d97-8c18-458a-b15a-3b7482868747",
+          "location": "TacosApp.Admin\\appsettings.Development.json",
+          "locationKind": "File",
+          "snippet": "ConnectionStrings",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppService.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AKS.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "ACA": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "potential",
+              "effort": 1
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Connection.0001",
+          "incidentId": "0bd743c0-5597-4a11-b5fb-507ff98cbff4",
+          "location": "TacosApp.Admin\\appsettings.Development.json",
+          "locationKind": "File",
+          "snippet": "DefaultConnection",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "potential",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Configuration.0003",
+          "incidentId": "72841aeb-a6c1-47eb-ace4-569ae112a879",
+          "location": "TacosApp.Admin\\appsettings.json",
+          "locationKind": "File",
+          "snippet": "AdminSeed",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppService.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AKS.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "ACA": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "potential",
+              "effort": 1
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Configuration.0003",
+          "incidentId": "0c9a3eb7-aaaa-471b-95a0-1ae36863c86c",
+          "location": "TacosApp.Admin\\appsettings.json",
+          "locationKind": "File",
+          "snippet": "ConnectionStrings",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppService.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AKS.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "ACA": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "potential",
+              "effort": 1
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Connection.0001",
+          "incidentId": "b81b4722-2a73-47c5-9e26-c51eca639359",
+          "location": "TacosApp.Admin\\appsettings.json",
+          "locationKind": "File",
+          "snippet": "DefaultConnection",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "potential",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Scale.0004",
+          "incidentId": "ac410070-a632-4c66-a6dd-7a812abc71e7",
+          "location": "TacosApp.Admin\\Hubs\\AdminOrderHub.cs",
+          "locationKind": "File",
+          "snippet": "Microsoft.AspNetCore.SignalR.Hub",
+          "line": 6,
+          "column": 36,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Security.0003",
+          "incidentId": "f07d76f6-cbe7-41c0-9af1-e347b7491596",
+          "location": "TacosApp.Admin\\Infrastructure\\IdentitySeeder.cs",
+          "locationKind": "File",
+          "snippet": "password",
+          "line": 11,
+          "column": 30,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "mandatory",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Scale.0004",
+          "incidentId": "6101211b-1a82-4186-b55e-033489c6c16b",
+          "location": "TacosApp.Admin\\Services\\OrderService.cs",
+          "locationKind": "File",
+          "snippet": "Microsoft.AspNetCore.SignalR.IHubContext",
+          "line": 10,
+          "column": 4,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Security.0003",
+          "incidentId": "1960b3f3-279a-42fb-ad85-c0fe60d84ccd",
+          "location": "TacosApp.Admin\\Data\\Migrations\\20260602231859_InitialAdmin.Designer.cs",
+          "locationKind": "File",
+          "snippet": "password",
+          "line": 200,
+          "column": 39,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "mandatory",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Security.0003",
+          "incidentId": "738fda74-49fa-4343-a97f-e510256ab6ef",
+          "location": "TacosApp.Admin\\Data\\Migrations\\AdminDbContextModelSnapshot.cs",
+          "locationKind": "File",
+          "snippet": "password",
+          "line": 197,
+          "column": 39,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "mandatory",
+              "effort": 3
+            }
+          },
+          "labels": []
+        }
+      ]
+    },
+    {
+      "path": "TacosApp.Web\\TacosApp.Web.csproj",
+      "issues": 9,
+      "storyPoints": 33,
+      "properties": {
+        "appName": "TacosApp.Web",
+        "frameworks": [
+          ".NETFramework,Version=v4.8"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ]
+      },
+      "incidents": [
+        {
+          "ruleId": "Scale.0001",
+          "incidentId": "936d5305-1e0f-436b-96a1-2992c69d2970",
+          "location": "TacosApp.Web\\TacosApp.Web.csproj",
+          "locationKind": "File",
+          "snippet": "\u30EB\u30FC\u30EB\u306B\u4E00\u81F4\u3059\u308B 24 \u500B\u306E\u30D5\u30A1\u30A4\u30EB\u304C\u898B\u3064\u304B\u308A\u307E\u3057\u305F\u3002\r\n\r\nContent\\bootstrap.css\r\nContent\\images\\beef-taco.jpg\r\nContent\\images\\beef-taco.svg\r\nContent\\images\\chicken-taco.jpg\r\nContent\\images\\chicken-taco.svg\r\nContent\\images\\lime-soda.jpg\r\nContent\\images\\lime-soda.svg\r\nContent\\images\\mango-lassi.jpg\r\nContent\\images\\mango-lassi.svg\r\nContent\\images\\nachos.jpg\r\nContent\\images\\nachos.svg\r\nContent\\images\\quesadilla.jpg\r\nContent\\images\\quesadilla.svg\r\nContent\\images\\shrimp-taco.jpg\r\nContent\\images\\shrimp-taco.svg\r\nContent\\images\\taco-placeholder.jpg\r\nContent\\images\\taco-placeholder.svg\r\nContent\\images\\veg-taco.jpg\r\nContent\\images\\veg-taco.svg\r\nContent\\site.css\r\nScripts\\bootstrap.bundle.js\r\nScripts\\jquery-3.7.1.js\r\nScripts\\tacos-cart.js\r\nScripts\\tacos-status.js\r\n",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Database.0002",
+          "incidentId": "362420a6-b79c-4681-8840-8646cdecc39e",
+          "location": "TacosApp.Web\\Web.config",
+          "locationKind": "File",
+          "snippet": "\u003Cadd name=\u0022TacosDb\u0022 /\u003E",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "potential",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Database.0003",
+          "incidentId": "d253392a-6c0d-4854-978d-f0c3167ec66e",
+          "location": "TacosApp.Web\\Web.config",
+          "locationKind": "File",
+          "snippet": "\u003Cadd name=\u0022TacosDb\u0022 /\u003E",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Identity.0002",
+          "incidentId": "010793b3-efc4-4d06-b90c-f4a9bd7b4725",
+          "location": "TacosApp.Web\\Web.config",
+          "locationKind": "File",
+          "snippet": "\u003Cadd name=\u0022TacosDb\u0022 /\u003E",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "mandatory",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "mandatory",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "mandatory",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "mandatory",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "mandatory",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "mandatory",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "mandatory",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Scale.0002",
+          "incidentId": "b7d761c1-a894-4757-b14b-89f880100dfc",
+          "location": "TacosApp.Web\\Web.config",
+          "locationKind": "File",
+          "snippet": "\u003CsessionState /\u003E",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "potential",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "potential",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Security.0002",
+          "incidentId": "6215b3b4-ce0e-4df9-bd2b-f8fb522aaf74",
+          "location": "TacosApp.Web\\Web.config",
+          "locationKind": "File",
+          "snippet": "\u003CappSettings /\u003E",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Security.0002",
+          "incidentId": "2752ef83-36d2-4427-93d6-832d32f399ef",
+          "location": "TacosApp.Web\\Web.config",
+          "locationKind": "File",
+          "snippet": "\u003CconnectionStrings /\u003E",
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Scale.0004",
+          "incidentId": "705143b0-851c-437b-9ab3-e11fb7e05ec1",
+          "location": "TacosApp.Web\\Api\\OrdersApiController.cs",
+          "locationKind": "File",
+          "snippet": "Microsoft.AspNet.SignalR.IHubContext",
+          "line": 88,
+          "column": 12,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Scale.0004",
+          "incidentId": "85acdd4f-a629-4586-8485-d99dcf4d16da",
+          "location": "TacosApp.Web\\Api\\OrdersApiController.cs",
+          "locationKind": "File",
+          "snippet": "Microsoft.AspNet.SignalR.GlobalHost",
+          "line": 88,
+          "column": 37,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Local.0006",
+          "incidentId": "c6c35471-00bc-42af-8bba-350d1db906ab",
+          "location": "TacosApp.Web\\App_Start\\WebApiConfig.cs",
+          "locationKind": "File",
+          "snippet": "http://",
+          "line": 11,
+          "column": 84,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppService.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AKS.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AKS.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "ACA": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "potential",
+              "effort": 1
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "potential",
+              "effort": 1
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Perf.0001",
+          "incidentId": "0ce40a1e-808f-469d-ba1b-a4775a540059",
+          "location": "TacosApp.Web\\Hubs\\OrderStatusHub.cs",
+          "locationKind": "File",
+          "snippet": "System.Threading.Tasks.Task.Wait",
+          "line": 20,
+          "column": 12,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 1
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Perf.0001",
+          "incidentId": "77aa935c-4b20-41c6-8d38-7ed167cf3dcb",
+          "location": "TacosApp.Web\\Hubs\\OrderStatusHub.cs",
+          "locationKind": "File",
+          "snippet": "System.Threading.Tasks.Task.Wait",
+          "line": 30,
+          "column": 12,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 1
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 1
+            }
+          },
+          "labels": []
+        },
+        {
+          "ruleId": "Scale.0004",
+          "incidentId": "603437b5-0109-404a-abfb-86394cd84aed",
+          "location": "TacosApp.Web\\Hubs\\OrderStatusHub.cs",
+          "locationKind": "File",
+          "snippet": "Microsoft.AspNet.SignalR.Hub",
+          "line": 9,
+          "column": 34,
+          "targets": {
+            "AppService.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppService.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AKS.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "ACA": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Linux": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceContainer.Windows": {
+              "severity": "optional",
+              "effort": 3
+            },
+            "AppServiceManagedInstance.Windows": {
+              "severity": "optional",
+              "effort": 3
+            }
+          },
+          "labels": []
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "Scale.0001": {
+      "id": "Scale.0001",
+      "description": "\u9759\u7684\u306A\u30B3\u30F3\u30C6\u30F3\u30C4\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002\n\n\u9759\u7684\u30B3\u30F3\u30C6\u30F3\u30C4\u3092\u76F4\u63A5\u63D0\u4F9B\u3059\u308B\u73FE\u5728\u306E\u30A2\u30D7\u30ED\u30FC\u30C1\u3067\u306F\u3001\u30B3\u30B9\u30C8\u306E\u5897\u52A0\u3001\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u306E\u554F\u984C\u3001\u30E1\u30F3\u30C6\u30CA\u30F3\u30B9\u306E\u8AB2\u984C (\u30B3\u30F3\u30C6\u30F3\u30C4\u306E\u5909\u66F4\u306B\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u306E\u518D\u5C55\u958B\u304C\u5FC5\u8981)\u3001\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u4E0A\u306E\u30EA\u30B9\u30AF\u304C\u751F\u3058\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\n\n\u9759\u7684\u306A\u30B3\u30F3\u30C6\u30F3\u30C4\u3092 Azure Blob Storage \u306B\u79FB\u52D5\u3057\u3001Azure CDN \u3092\u8FFD\u52A0\u3059\u308B\u3053\u3068\u3092\u691C\u8A0E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+      "title": "\u9759\u7684\u306A\u30B3\u30F3\u30C6\u30F3\u30C4\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "optional",
+      "effort": 3,
+      "links": [
+        {
+          "title": "Azure Blob Storage",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2250574"
+        },
+        {
+          "title": "Azure CDN",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2250392"
+        }
+      ],
+      "labels": []
+    },
+    "Configuration.0003": {
+      "id": "Configuration.0003",
+      "description": "Local application configuration detected. Azure App Configuration can be used as a centralized, cloud-based service for application settings that are currently stored in local configuration files. Moving this configuration to Azure App Configuration can help you externalize settings from code and deployment artifacts, centralize management across environments, and enable dynamic refresh and controlled access to configuration data.",
+      "title": "Local application configuration detected",
+      "severity": "potential",
+      "effort": 1,
+      "links": [
+        {
+          "title": "What is Azure App Configuration?",
+          "url": "https://learn.microsoft.com/azure/azure-app-configuration/overview"
+        },
+        {
+          "title": "Configuration management with Azure App Configuration",
+          "url": "https://aka.ms/appconfig/configuration-management"
+        }
+      ],
+      "labels": []
+    },
+    "Connection.0001": {
+      "id": "Connection.0001",
+      "description": "\u63A5\u7D9A\u6587\u5B57\u5217\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002\u30A2\u30D7\u30EA\u304C Azure \u306B\u79FB\u884C\u3055\u308C\u308B\u3068\u5229\u7528\u3067\u304D\u306A\u304F\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\n\nAzure \u304B\u3089\u52D5\u4F5C\u3059\u308B\u3053\u3068\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002\u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u306B\u63A5\u7D9A\u3057\u3066\u3044\u308B\u5834\u5408\u306F\u3001\u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u3092 Azure \u306B\u79FB\u884C\u3059\u308B\u3053\u3068\u304C\u5FC5\u8981\u306A\u5834\u5408\u304C\u3042\u308A\u307E\u3059\u3002\u3053\u308C\u3092\u884C\u3046\u306B\u306F\u3001\u8907\u6570\u306E\u65B9\u6CD5\u304C\u3042\u308A\u307E\u3059\u3002\n   1. Azure SQL \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u306B\u79FB\u884C\u3057\u3066\u3001\u305D\u306E\u4ED6\u306E\u5229\u70B9\u3092\u5F97\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059 (\u4EE5\u4E0B\u306E\u30EA\u30F3\u30AF\u3092\u53C2\u7167)\u3002\n   2. Azure SQL \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u3067\u4F7F\u7528\u3067\u304D\u306A\u3044\u6A5F\u80FD\u304C\u5FC5\u8981\u3067\u3001VM \u3092\u4F7F\u7528\u3057\u306A\u3044\u5834\u5408\u306F\u3001Azure SQL Managed Instance \u3092\u691C\u8A0E\u3057\u3066\u304F\u3060\u3055\u3044\u3002\n   3. \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9 \u30B5\u30FC\u30D0\u30FC\u3092 Azure VM \u4E0A\u306ESQL Server \u306B\u76F4\u63A5\u79FB\u884C\u3057\u307E\u3059\u3002\n\n\u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u306E\u79FB\u884C\u4F5C\u696D\u3092\u8A55\u4FA1\u3059\u308B\u306B\u306F\u3001Azure Migrate \u30C4\u30FC\u30EB\u3092\u4F7F\u7528\u3067\u304D\u307E\u3059\u3002\u4EE5\u4E0B\u306E\u30EA\u30F3\u30AF\u3092\u53C2\u7167\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+      "title": "\u63A5\u7D9A\u6587\u5B57\u5217\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "potential",
+      "effort": 3,
+      "links": [
+        {
+          "title": "SQL Server \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u3092 Azure \u306B\u79FB\u884C\u3059\u308B",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2251731"
+        },
+        {
+          "title": "Azure SQL Managed Instance",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2251613"
+        },
+        {
+          "title": "Azure Migrate",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2252410"
+        }
+      ],
+      "labels": []
+    },
+    "Scale.0004": {
+      "id": "Scale.0004",
+      "description": "\u4E8C\u91CD\u901A\u4FE1\u306E\u53EF\u80FD\u6027\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002\n\nWebSocket \u306F\u307B\u3068\u3093\u3069\u306E Azure \u74B0\u5883\u3067\u52D5\u4F5C\u3057\u3001\u79FB\u884C\u3092\u30D6\u30ED\u30C3\u30AF\u3057\u307E\u305B\u3093\u3002\u305F\u3060\u3057\u3001\u30B9\u30B1\u30FC\u30EB\u30A2\u30A6\u30C8\u6642\u306B\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u304C\u6B63\u3057\u304F\u52D5\u4F5C\u3059\u308B\u3053\u3068\u3092\u78BA\u8A8D\u3059\u308B\u305F\u3081\u306B\u3001\u614E\u91CD\u306B\u78BA\u8A8D\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\n\n\u30B9\u30B1\u30FC\u30EB\u30A2\u30A6\u30C8\u3055\u308C\u305F 1 \u3064\u306E\u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u304B\u3089\u30E1\u30C3\u30BB\u30FC\u30B8\u3092\u30D6\u30ED\u30FC\u30C9\u30AD\u30E3\u30B9\u30C8\u3059\u308B\u3068\u304D\u306B\u3001\u4ED6\u306E\u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u304B\u3089\u3082\u305D\u306E\u30E1\u30C3\u30BB\u30FC\u30B8\u3092\u30D6\u30ED\u30FC\u30C9\u30AD\u30E3\u30B9\u30C8\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u5834\u5408\u3001\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u3067\u306F\u901A\u4FE1\u30D0\u30C3\u30AF\u30D7\u30EC\u30FC\u30F3\u304C\u5FC5\u8981\u306B\u306A\u308B\u3053\u3068\u304C\u3042\u308A\u307E\u3059\u3002\u540C\u69D8\u306B\u3001\u30E6\u30FC\u30B6\u30FC\u304C\u5207\u65AD\u5F8C\u306B\u540C\u3058\u30B5\u30FC\u30D0\u30FC\u306B\u518D\u63A5\u7D9A\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u5834\u5408\u306F\u3001\u30BB\u30C3\u30B7\u30E7\u30F3 \u30A2\u30D5\u30A3\u30CB\u30C6\u30A3\u3092\u6709\u52B9\u306B\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u5834\u5408\u304C\u3042\u308A\u307E\u3059\u3002\n\n\u30B5\u30FC\u30D0\u30FC\u304C\u9001\u4FE1\u3057\u305F\u30A4\u30D9\u30F3\u30C8 \u30B9\u30C8\u30EA\u30FC\u30E0\u304C\u4F7F\u7528\u3055\u308C\u308B\u3068\u304D\u306B\u540C\u69D8\u306E\u554F\u984C\u304C\u767A\u751F\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059 (\u5FDC\u7B54\u30B3\u30F3\u30C6\u30F3\u30C4 \u30BF\u30A4\u30D7 \u0022text/event-stream\u0022)\u3002",
+      "title": "\u4E8C\u91CD\u901A\u4FE1\u306E\u53EF\u80FD\u6027\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "optional",
+      "effort": 3,
+      "links": [
+        {
+          "title": "\u30B9\u30B1\u30FC\u30EB\u30A2\u30A6\u30C8\u3059\u308B\u8A2D\u8A08",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2250798"
+        },
+        {
+          "title": "Azure SignalR Service \u3068\u306F",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2251300"
+        },
+        {
+          "title": "Azure Service Bus \u3068\u306F",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2251301"
+        }
+      ],
+      "labels": []
+    },
+    "Security.0003": {
+      "id": "Security.0003",
+      "description": "\u30CF\u30FC\u30C9\u30B3\u30FC\u30C7\u30A3\u30F3\u30B0\u3055\u308C\u305F\u6A5F\u5BC6\u30C7\u30FC\u30BF\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002\n\nAzure App Service \u30DE\u30CD\u30FC\u30B8\u30C9 \u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u3092\u5BFE\u8C61\u3068\u3059\u308B\u5834\u5408\u306F\u3001\u30B7\u30FC\u30AF\u30EC\u30C3\u30C8\u3092 Key Vault/App Configuration \u306B\u5916\u90E8\u5316\u3057\u3001\u30D1\u30B9\u30EF\u30FC\u30C9\u3084\u57CB\u3081\u8FBC\u307F\u63A5\u7D9A\u6587\u5B57\u5217\u306E\u4EE3\u308F\u308A\u306B\u30DE\u30CD\u30FC\u30B8\u30C9 ID \u3092\u4F7F\u7528\u3057\u307E\u3059\u3002\n\n\u4ED6\u306E Azure Compute Services \u3092\u5BFE\u8C61\u3068\u3059\u308B\u5834\u5408:\n\n\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u306E\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u3092\u4FB5\u5BB3\u3059\u308B\u305F\u3081\u3001\u30D1\u30B9\u30EF\u30FC\u30C9\u3001ID\u3001\u30C8\u30FC\u30AF\u30F3\u306A\u3069\u306E\u6A5F\u5BC6\u30C7\u30FC\u30BF\u3092\u69CB\u6210\u30D5\u30A1\u30A4\u30EB\u3084\u30B3\u30FC\u30C9\u306B\u76F4\u63A5\u914D\u7F6E\u3057\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002\n\nAzure App Configuration \u307E\u305F\u306F Azure KeyVault \u3092\u4F7F\u7528\u3057\u3066\u30B7\u30FC\u30AF\u30EC\u30C3\u30C8\u3092\u4FDD\u5B58\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+      "title": "\u30CF\u30FC\u30C9\u30B3\u30FC\u30C7\u30A3\u30F3\u30B0\u3055\u308C\u305F\u6A5F\u5BC6\u30C7\u30FC\u30BF\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "optional",
+      "effort": 3,
+      "links": [
+        {
+          "title": "\u4E00\u5143\u7684\u306A\u30A2\u30D7\u30EA\u306E\u69CB\u6210\u3068\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250733"
+        }
+      ],
+      "labels": []
+    },
+    "Database.0002": {
+      "id": "Database.0002",
+      "description": "SQL \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u63A5\u7D9A\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002\n\nAzure \u3067\u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u304C\u4F7F\u7528\u53EF\u80FD/\u5230\u9054\u53EF\u80FD\u3067\u3042\u308B\u3053\u3068\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002\n\n\u305D\u3046\u3067\u306A\u3044\u5834\u5408\u306F\u3001\u30C7\u30FC\u30BF\u3092 Azure \u306B\u79FB\u52D5\u3059\u308B\u65B9\u6CD5\u304C\u8907\u6570\u3042\u308A\u307E\u3059\u3002\n   1. Azure SQL \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u306B\u79FB\u884C\u3057\u307E\u3059\u3002\n   2. Azure SQL \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u3067\u4F7F\u7528\u3067\u304D\u306A\u3044\u6A5F\u80FD\u304C\u5FC5\u8981\u3067\u3001VM \u3092\u4F7F\u7528\u3057\u306A\u3044\u5834\u5408\u306F\u3001Azure SQL Managed Instance \u3092\u691C\u8A0E\u3057\u3066\u304F\u3060\u3055\u3044\u3002\n   3. \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9 \u30B5\u30FC\u30D0\u30FC\u3092 Azure VM \u4E0A\u306ESQL Server \u306B\u76F4\u63A5\u79FB\u884C\u3057\u307E\u3059\u3002\n\n\u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u306E\u79FB\u884C\u4F5C\u696D\u3092\u8A55\u4FA1\u3059\u308B\u306B\u306F\u3001Azure Migrate \u30C4\u30FC\u30EB\u3092\u4F7F\u7528\u3067\u304D\u307E\u3059\u3002\u4EE5\u4E0B\u306E\u30EA\u30F3\u30AF\u3092\u53C2\u7167\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+      "title": "SQL \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u63A5\u7D9A\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "potential",
+      "effort": 3,
+      "links": [
+        {
+          "title": "SQL Server \u30C7\u30FC\u30BF\u30D9\u30FC\u30B9\u3092 Azure \u306B\u79FB\u884C\u3059\u308B",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2251731"
+        },
+        {
+          "title": "Azure SQL Managed Instance",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2251613"
+        },
+        {
+          "title": "Azure Migrate",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2252410"
+        }
+      ],
+      "labels": []
+    },
+    "Database.0003": {
+      "id": "Database.0003",
+      "description": "System.Data.SqlClient \u306E\u4F9D\u5B58\u95A2\u4FC2\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002\n\nSystem.Data.SqlClient \u306F Azure \u3067\u52D5\u4F5C\u3057\u307E\u3059\u304C\u3001\u3088\u308A\u65B0\u3057\u3044 Microsoft.Data.SqlClient \u30D1\u30C3\u30B1\u30FC\u30B8\u304C\u4ECA\u5F8C\u306E\u4E3B\u8981\u306A .NET SQL \u30AF\u30E9\u30A4\u30A2\u30F3\u30C8\u3068\u306A\u308A\u3001\u6700\u65B0\u306E\u6A5F\u80FD\u304C\u63D0\u4F9B\u3055\u308C\u307E\u3059\u3002\u305F\u3068\u3048\u3070\u3001Microsoft.Data.SqlClient \u3092\u4F7F\u7528\u3059\u308B\u3068\u3001\u63A5\u7D9A\u6587\u5B57\u5217\u304B\u3089 Azure Managed Identity \u3092\u7C21\u5358\u306B\u4F7F\u7528\u3067\u304D\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3059\u3002",
+      "title": "System.Data.SqlClient \u4F9D\u5B58\u95A2\u4FC2\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "optional",
+      "effort": 3,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242668"
+        }
+      ],
+      "labels": []
+    },
+    "Identity.0002": {
+      "id": "Identity.0002",
+      "description": "\u30A2\u30D7\u30EA\u306F\u3001Azure App Service\u3001Azure Container Apps\u3001Azure Kubernetes Service \u3067\u306F\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u3066\u3044\u306A\u3044 Windows \u8A8D\u8A3C\u3092\u4F7F\u7528\u3057\u3066\u3044\u307E\u3059\u3002\n\nAzure App Service \u306B\u306F\u3001\u8A8D\u8A3C\u3068\u8A8D\u53EF\u306E\u6A5F\u80FD\u304C\u7D44\u307F\u8FBC\u307E\u308C\u3066\u3044\u308B\u305F\u3081\u3001Web \u30A2\u30D7\u30EA\u306B\u6700\u5C0F\u9650\u306E\u30B3\u30FC\u30C9\u3092\u8A18\u8FF0\u3059\u308B\u304B\u3001\u30CE\u30FC \u30B3\u30FC\u30C9\u3067\u3001\u30E6\u30FC\u30B6\u30FC\u3092\u30B5\u30A4\u30F3\u30A4\u30F3\u3055\u305B\u3001\u30C7\u30FC\u30BF\u306B\u30A2\u30AF\u30BB\u30B9\u3067\u304D\u307E\u3059\u3002\n\n\u8A73\u7D30\u306B\u3064\u3044\u3066\u306F\u3001\u4EE5\u4E0B\u306E\u30EA\u30F3\u30AF\u3092\u3054\u89A7\u304F\u3060\u3055\u3044\u3002\u0022",
+      "title": "Windows \u8A8D\u8A3C\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "mandatory",
+      "effort": 3,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242883"
+        }
+      ],
+      "labels": []
+    },
+    "Scale.0002": {
+      "id": "Scale.0002",
+      "description": "\u30A4\u30F3\u30D7\u30ED\u30BB\u30B9\u307E\u305F\u306F\u30ED\u30FC\u30AB\u30EB \u30D7\u30ED\u30BB\u30B9\u306B\u4FDD\u5B58\u3055\u308C\u3066\u3044\u308B\u30BB\u30C3\u30B7\u30E7\u30F3\u72B6\u614B\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002\n\nAzure App Service \u30DE\u30CD\u30FC\u30B8\u30C9 \u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u3092\u5BFE\u8C61\u3068\u3059\u308B\u5834\u5408\u306F\u3001\u30BB\u30C3\u30B7\u30E7\u30F3\u3092 Azure Cache for Redis \u307E\u305F\u306F Cosmos DB \u306B\u79FB\u52D5\u3057\u307E\u3059\u3002\u30A4\u30F3\u30D7\u30ED\u30BB\u30B9 \u30BB\u30C3\u30B7\u30E7\u30F3\u306F\u30B9\u30B1\u30FC\u30EB\u30A2\u30A6\u30C8\u3092\u59A8\u3052\u307E\u3059\u304C\u3001\u30DE\u30CD\u30FC\u30B8\u30C9 \u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u306F\u30BB\u30C3\u30B7\u30E7\u30F3\u306E\u30BB\u30DE\u30F3\u30C6\u30A3\u30AF\u30B9\u3092\u5909\u66F4\u3057\u307E\u305B\u3093\u3002\n\n\u4ED6\u306E Azure Compute Services \u3092\u5BFE\u8C61\u3068\u3059\u308B\u5834\u5408:\n\n\u30A4\u30F3\u30D7\u30ED\u30BB\u30B9\u307E\u305F\u306F\u30ED\u30FC\u30AB\u30EB \u30D7\u30ED\u30BB\u30B9\u306B\u683C\u7D0D\u3055\u308C\u305F\u30BB\u30C3\u30B7\u30E7\u30F3\u72B6\u614B\u306F\u3001Azure \u5185\u3067\u306E\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u306E\u52D5\u4F5C\u3092\u76F4\u3061\u306B\u59A8\u3052\u308B\u308F\u3051\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u304C\u3001Azure App Service \u3084 Azure Kubernetes Service \u306E\u30B9\u30B1\u30FC\u30EA\u30F3\u30B0\u3092\u3088\u308A\u56F0\u96E3\u306B\u3059\u308B\u305F\u3081\u3001\u63A8\u5968\u3055\u308C\u307E\u305B\u3093\u3002\n\nAzure \u306B\u306F\u3001Azure Cache for Redis\u3001Azure Cosmos DB\u3001\u307E\u305F\u306F\u305D\u306E\u4ED6\u306E\u30B5\u30FC\u30D3\u30B9\u3092\u4F7F\u7528\u3057\u3066\u3001\u30BB\u30C3\u30B7\u30E7\u30F3\u72B6\u614B\u3092\u30B9\u30B1\u30FC\u30E9\u30D6\u30EB\u306A\u65B9\u6CD5\u3067\u683C\u7D0D\u3059\u308B\u8907\u6570\u306E\u65B9\u6CD5\u304C\u7528\u610F\u3055\u308C\u3066\u3044\u307E\u3059\u3002",
+      "title": "\u30A4\u30F3\u30D7\u30ED\u30BB\u30B9\u307E\u305F\u306F\u30ED\u30FC\u30AB\u30EB \u30D7\u30ED\u30BB\u30B9\u306B\u4FDD\u5B58\u3055\u308C\u3066\u3044\u308B\u30BB\u30C3\u30B7\u30E7\u30F3\u72B6\u614B\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "potential",
+      "effort": 3,
+      "links": [
+        {
+          "title": "Azure Cache for Redis \u306E ASP.NET \u30BB\u30C3\u30B7\u30E7\u30F3\u72B6\u614B\u30D7\u30ED\u30D0\u30A4\u30C0\u30FC",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2250855"
+        },
+        {
+          "title": "Azure Cosmos DB \u3092 ASP.NET \u30BB\u30C3\u30B7\u30E7\u30F3\u72B6\u614B\u3068\u30AD\u30E3\u30C3\u30B7\u30E5 \u30D7\u30ED\u30D0\u30A4\u30C0\u30FC\u3068\u3057\u3066\u4F7F\u7528\u3059\u308B",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2250757"
+        },
+        {
+          "title": "Azure Cosmos DB: \u81EA\u52D5\u30B9\u30B1\u30FC\u30EA\u30F3\u30B0\u3001\u30BB\u30C3\u30B7\u30E7\u30F3\u72B6\u614B\u3001\u76E3\u8996\u306A\u3069",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2250758"
+        },
+        {
+          "title": "\u30B9\u30B1\u30FC\u30EB\u30A2\u30A6\u30C8\u3059\u308B\u8A2D\u8A08",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2251007"
+        }
+      ],
+      "labels": []
+    },
+    "Security.0002": {
+      "id": "Security.0002",
+      "description": "\u69CB\u6210\u30D3\u30EB\u30C0\u30FC\u306E\u306A\u3044\u63A5\u7D9A\u6587\u5B57\u5217\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002 \n\n\u63A5\u7D9A\u6587\u5B57\u5217\u3092\u30A2\u30D7\u30EA\u306B\u76F4\u63A5\u4FDD\u6301\u3059\u308B\u3053\u3068\u306F\u30D9\u30B9\u30C8 \u30D7\u30E9\u30AF\u30C6\u30A3\u30B9\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3 \u30EA\u30B9\u30AF\u3001\u30E1\u30F3\u30C6\u30CA\u30F3\u30B9\u306E\u5897\u52A0\u3001\u30B9\u30B1\u30FC\u30E9\u30D3\u30EA\u30C6\u30A3\u306E\u8AB2\u984C\u3001\u30B3\u30F3\u30D7\u30E9\u30A4\u30A2\u30F3\u30B9\u306E\u57FA\u6E96 (PCI DSS\u3001GDPR \u306A\u3069) \u304C\u767A\u751F\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\n\n\u4EE3\u308F\u308A\u306B\u3001\u69CB\u6210\u30D3\u30EB\u30C0\u30FC\u3092\u4F7F\u7528\u3057\u3066 Azure \u74B0\u5883\u306E\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u3067\u4FDD\u8B77\u3055\u308C\u305F\u30BD\u30FC\u30B9\u304B\u3089\u30B7\u30FC\u30AF\u30EC\u30C3\u30C8\u3092\u53D6\u5F97\u3059\u308B\u3053\u3068\u3092\u304A\u52E7\u3081\u3057\u307E\u3059\u3002",
+      "title": "\u69CB\u6210\u30D3\u30EB\u30C0\u30FC\u306E\u306A\u3044\u63A5\u7D9A\u6587\u5B57\u5217\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "optional",
+      "effort": 3,
+      "links": [
+        {
+          "title": "\u69CB\u6210\u30D3\u30EB\u30C0\u30FC",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250915"
+        },
+        {
+          "title": "\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3 \u30B7\u30FC\u30AF\u30EC\u30C3\u30C8\u306E\u4FDD\u5B58",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250916"
+        },
+        {
+          "title": "\u4E00\u5143\u7684\u306A\u30A2\u30D7\u30EA\u306E\u69CB\u6210\u3068\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250733"
+        }
+      ],
+      "labels": []
+    },
+    "Local.0006": {
+      "id": "Local.0006",
+      "description": "\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u306B\u306F\u3001Azure \u3067\u30A2\u30AF\u30BB\u30B9\u3067\u304D\u306A\u3044\u30B5\u30FC\u30D3\u30B9\u306B\u5BFE\u5FDC\u3059\u308B\u53EF\u80FD\u6027\u306E\u3042\u308B\u30CF\u30FC\u30C9\u30B3\u30FC\u30C9\u3055\u308C\u305F URL \u304C\u3042\u308A\u307E\u3059\u3002\n\n\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u304C Azure \u304B\u3089\u4F7F\u7528\u53EF\u80FD\u306A URL \u306B\u30A2\u30AF\u30BB\u30B9\u3057\u3088\u3046\u3068\u3057\u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002\u3053\u308C\u3089\u306E\u30B5\u30FC\u30D3\u30B9\u3082 Azure \u306B\u79FB\u884C\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u5834\u5408\u304C\u3042\u308A\u307E\u3059\u3002\u3053\u308C\u306B\u3088\u308A\u3001\u30AF\u30E9\u30A6\u30C9\u306E\u5F85\u6A5F\u6642\u9593\u304C\u77ED\u7E2E\u3055\u308C\u308B\u3068\u3044\u3046\u5229\u70B9\u304C\u5F97\u3089\u308C\u307E\u3059\u3002\n\n\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u304C\u30AA\u30F3\u30D7\u30EC\u30DF\u30B9\u3067\u5B9F\u884C\u3055\u308C\u308B\u30B5\u30FC\u30D3\u30B9\u306B\u4F9D\u5B58\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u5834\u5408\u306F\u3001ExpressRoute\u3001\u30CF\u30A4\u30D6\u30EA\u30C3\u30C9\u63A5\u7D9A\u3001\u307E\u305F\u306F VPN \u30BD\u30EA\u30E5\u30FC\u30B7\u30E7\u30F3\u3092\u4F7F\u7528\u3057\u3066 Azure \u3068\u30ED\u30FC\u30AB\u30EB \u30CD\u30C3\u30C8\u30EF\u30FC\u30AF\u3092\u63A5\u7D9A\u3067\u304D\u307E\u3059\u3002",
+      "title": "\u30CF\u30FC\u30C9\u30B3\u30FC\u30C9\u3055\u308C\u305F URL \u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "potential",
+      "effort": 1,
+      "links": [
+        {
+          "title": "ExpressRoute",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250577"
+        },
+        {
+          "title": "\u30CF\u30A4\u30D6\u30EA\u30C3\u30C9\u63A5\u7D9A",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242588"
+        },
+        {
+          "title": "\u30AA\u30F3\u30D7\u30EC\u30DF\u30B9 \u30CD\u30C3\u30C8\u30EF\u30FC\u30AF\u3092\u63A5\u7D9A\u3059\u308B",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242591"
+        }
+      ],
+      "labels": []
+    },
+    "Perf.0001": {
+      "id": "Perf.0001",
+      "description": "\u540C\u671F API \u306E\u4F7F\u7528\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F\u3002\n\n\u540C\u671F API \u3092\u4F7F\u7528\u3059\u308B\u3068\u3001\u5F85\u6A5F\u6642\u9593\u30D7\u30ED\u30D5\u30A1\u30A4\u30EB\u304C\u7570\u306A\u308B\u305F\u3081\u306B\u3001\u30AA\u30F3\u30D7\u30EC\u30DF\u30B9\u74B0\u5883\u3068\u6BD4\u8F03\u3057\u3066 Azure \u306E\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u306E\u554F\u984C\u304C\u5897\u52A0\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u975E\u540C\u671F\u30B3\u30FC\u30C9 \u30D1\u30BF\u30FC\u30F3\u306E\u63A1\u7528\u3092\u691C\u8A0E\u3057\u3066\u304F\u3060\u3055\u3044\u3002\n\n\u8CA0\u8377\u306E\u9AD8\u3044\u30B7\u30B9\u30C6\u30E0 (\u7279\u306B I/O \u304C\u591A\u3044\u5834\u5408) \u3067\u306F\u3001\u975E\u540C\u671F\u30D1\u30BF\u30FC\u30F3\u3092\u4F7F\u7528\u3059\u308B\u3068\u3001\u5168\u4F53\u7684\u306A\u30B9\u30EB\u30FC\u30D7\u30C3\u30C8\u3068\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u3092\u5411\u4E0A\u3055\u305B\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\u975E\u540C\u671F API \u3092\u4F7F\u7528\u3059\u308B\u3068\u3001\u30B9\u30EC\u30C3\u30C9\u306E\u5C0F\u3055\u306A\u30D7\u30FC\u30EB\u3067\u3001\u30D6\u30ED\u30C3\u30AF\u547C\u3073\u51FA\u3057\u3092\u5F85\u6A5F\u3059\u308B\u3053\u3068\u306A\u304F\u3001\u6570\u5343\u3082\u306E\u540C\u6642\u8981\u6C42\u3092\u7BA1\u7406\u3067\u304D\u307E\u3059\u3002\u5B9F\u884C\u6642\u9593\u306E\u9577\u3044\u540C\u671F\u30BF\u30B9\u30AF\u304C\u5B8C\u4E86\u3059\u308B\u306E\u3092\u5F85\u3064\u4EE3\u308F\u308A\u306B\u3001\u30B9\u30EC\u30C3\u30C9\u306F\u5225\u306E\u8981\u6C42\u3092\u51E6\u7406\u3067\u304D\u307E\u3059\u3002\u9006\u306B\u3001\u591A\u6570\u306E\u540C\u671F\u30D6\u30ED\u30C3\u30AF\u547C\u3073\u51FA\u3057\u306F\u30B9\u30EC\u30C3\u30C9 \u30D7\u30FC\u30EB\u306E\u4E0D\u8DB3\u306E\u539F\u56E0\u3068\u306A\u308A\u3001\u5FDC\u7B54\u6642\u9593\u304C\u4F4E\u4E0B\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\n\n\u975E\u540C\u671F\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u306E\u8A73\u7D30\u306B\u3064\u3044\u3066\u306F\u3001\u4EE5\u4E0B\u306E\u30EA\u30F3\u30AF\u3092\u53C2\u7167\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+      "title": "\u540C\u671F API \u306E\u4F7F\u7528\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F",
+      "severity": "optional",
+      "effort": 1,
+      "links": [
+        {
+          "title": "\u975E\u540C\u671F\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2294824"
+        },
+        {
+          "title": "ASP.NET Core \u306E\u30D9\u30B9\u30C8 \u30D7\u30E9\u30AF\u30C6\u30A3\u30B9: \u30D6\u30ED\u30C3\u30AF\u547C\u3073\u51FA\u3057\u3092\u907F\u3051\u308B",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2294727"
+        }
+      ],
+      "labels": []
+    }
+  }
+}

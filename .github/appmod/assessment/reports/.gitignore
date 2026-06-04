@@ -1,0 +1,6 @@
+
+# Track assessment config and report files
+!.gitignore
+!assessment-config.yaml
+!*/
+!*/report.json

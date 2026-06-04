@@ -1,0 +1,13 @@
+assessmentDomains:
+  - cloud-readiness
+  - dotnet-upgrade
+analysisCoverage: issue-only
+targetRuntime: dotnet10
+targetComputeServices:
+  - azure-appservice
+  - azure-aks
+  - azure-container-apps
+targetOS:
+  - linux
+  - windows
+enableContainerization: false

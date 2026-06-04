@@ -1,0 +1,7 @@
+# Ignore engine binaries and temporary artifacts
+*
+
+# Track this file and assessment reports
+!.gitignore
+!reports/
+!reports/**
