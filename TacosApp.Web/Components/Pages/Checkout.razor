@@ -1,0 +1,59 @@
+@page "/checkout"
+@inject CartService CartSvc
+@inject IHttpContextAccessor HttpContextAccessor
+@inject NavigationManager Nav
+
+<PageTitle>お届け情報 — 🌮 タコスデリバリー</PageTitle>
+<h2 class="mb-4">お届け情報の入力</h2>
+
+<div class="row">
+    <div class="col-md-7">
+        <EditForm method="post" Model="Form" OnValidSubmit="HandleValidSubmit" FormName="checkout-form">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="alert alert-danger" />
+            <div class="mb-3">
+                <label class="form-label">お名前 <span class="text-danger">*</span></label>
+                <InputText @bind-Value="Form!.CustomerName" class="form-control" placeholder="山田 太郎" />
+                <ValidationMessage For="@(() => Form!.CustomerName)" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">電話番号 <span class="text-danger">*</span></label>
+                <InputText @bind-Value="Form!.Phone" class="form-control" placeholder="090-1234-5678" />
+                <ValidationMessage For="@(() => Form!.Phone)" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">配達先住所 <span class="text-danger">*</span></label>
+                <InputTextArea @bind-Value="Form!.DeliveryAddress" class="form-control" rows="2" />
+                <ValidationMessage For="@(() => Form!.DeliveryAddress)" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">備考（任意）</label>
+                <InputTextArea @bind-Value="Form!.DeliveryNote" class="form-control" rows="2"
+                               placeholder="〇〇号室、不在時は..." />
+            </div>
+            <button type="submit" class="btn btn-taco">確認画面へ進む →</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm(FormName = "checkout-form")]
+    public CheckoutViewModel? Form { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Form ??= new CheckoutViewModel();
+        var cart = CartSvc.GetCart();
+        if (!cart.Items.Any())
+        {
+            Nav.NavigateTo("/cart");
+        }
+    }
+
+    private void HandleValidSubmit()
+    {
+        HttpContextAccessor.HttpContext!.Session.SetString(
+            "CheckoutInfo", JsonConvert.SerializeObject(Form));
+        Nav.NavigateTo("/confirm");
+    }
+}

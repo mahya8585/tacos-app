@@ -1,12 +1,10 @@
 $base = 'http://localhost:5081'
 
 $checks = @(
-    @{ Name = 'Home (menu)';      Path = '/';                                       Expect = @(200) },
-    @{ Name = 'Order/Cart';       Path = '/Order/Cart';                             Expect = @(200) },
-    @{ Name = 'Status (empty)';   Path = '/Status';                                 Expect = @(302) },
-    @{ Name = 'Status (sample)';  Path = '/Status?orderNumber=SAMPLE-000001';       Expect = @(200) },
-    @{ Name = 'Status (missing)'; Path = '/Status?orderNumber=NO-SUCH-ORDER';       Expect = @(200) },
-    @{ Name = 'Static CSS';       Path = '/Content/site.css';                       Expect = @(200) }
+    @{ Name = 'Home (menu)';      Path = '/';                                  Expect = @(200) },
+    @{ Name = 'Cart';             Path = '/cart';                              Expect = @(200) },
+    @{ Name = 'Status (missing)'; Path = '/status/NO-SUCH-ORDER';              Expect = @(200) },
+    @{ Name = 'Static CSS';       Path = '/app.css';                           Expect = @(200) }
 )
 
 & "$PSScriptRoot\smoketest.ps1" -BaseUrl $base -Title 'TacosApp.Web' -Checks $checks

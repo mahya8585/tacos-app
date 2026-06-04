@@ -1,0 +1,122 @@
+@page "/status/{OrderNumber}"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+@implements IDisposable
+@inject TacosDbContext Db
+@inject OrderStatusNotificationService NotifySvc
+
+<PageTitle>注文状況 — 🌮 タコスデリバリー</PageTitle>
+<h2 class="mb-4">📦 注文状況</h2>
+
+@if (order == null)
+{
+    <div class="alert alert-warning">注文番号 <strong>@OrderNumber</strong> が見つかりません。</div>
+}
+else
+{
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="mb-1 text-muted small">注文番号</p>
+            <p class="fw-bold fs-5">@order.OrderNumber</p>
+        </div>
+    </div>
+
+    <div class="status-timeline mb-4">
+        @foreach (var step in steps)
+        {
+            <div class="status-step @(step.Status <= currentStatus ? "done" : "") @(step.Status == currentStatus ? "active" : "")">
+                <div class="step-icon">@step.Icon</div>
+                <div class="step-label">@step.Label</div>
+            </div>
+        }
+    </div>
+
+    <div class="alert @StatusAlertClass text-center fs-5">
+        @StatusEmoji <strong>@StatusLabel</strong>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h6>注文内容</h6>
+            <table class="table table-sm">
+                <tbody>
+                    @foreach (var item in order.Items)
+                    {
+                        <tr>
+                            <td>@item.Menu?.Name × @item.Quantity
+                                @if (item.Toppings.Any())
+                                {
+                                    <br /><small class="text-muted">@string.Join("、", item.Toppings.Select(t => t.Topping?.Name))</small>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public string OrderNumber { get; set; } = "";
+    private Order? order;
+    private int currentStatus;
+
+    private string StatusLabel => currentStatus switch
+    {
+        0 => "注文受付",
+        1 => "調理中",
+        2 => "配達中",
+        3 => "配達完了",
+        _ => "不明"
+    };
+
+    private string StatusEmoji => currentStatus switch
+    {
+        0 => "📋",
+        1 => "👨‍🍳",
+        2 => "🛵",
+        3 => "✅",
+        _ => "❓"
+    };
+
+    private string StatusAlertClass => currentStatus switch
+    {
+        3 => "alert-success",
+        2 => "alert-info",
+        _ => "alert-warning"
+    };
+
+    private static readonly List<(int Status, string Icon, string Label)> steps = new()
+    {
+        (0, "📋", "受付"),
+        (1, "👨‍🍳", "調理中"),
+        (2, "🛵", "配達中"),
+        (3, "✅", "完了")
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        order = await Db.Orders
+            .Include(o => o.Items).ThenInclude(i => i.Menu)
+            .Include(o => o.Items).ThenInclude(i => i.Toppings).ThenInclude(t => t.Topping)
+            .FirstOrDefaultAsync(o => o.OrderNumber == OrderNumber);
+
+        if (order != null)
+        {
+            currentStatus = (int)order.Status;
+            NotifySvc.OnStatusUpdated += HandleStatusUpdated;
+        }
+    }
+
+    private void HandleStatusUpdated(string orderNumber, int status, string _)
+    {
+        if (orderNumber != OrderNumber) return;
+        currentStatus = status;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        NotifySvc.OnStatusUpdated -= HandleStatusUpdated;
+    }
+}

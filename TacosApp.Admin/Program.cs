@@ -41,6 +41,13 @@ builder.Services.AddRazorPages(options =>
 
 builder.Services.AddSignalR();
 
+builder.Services.AddHttpClient("TacosWeb", (sp, client) =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    client.BaseAddress = new Uri(config["WebApiBaseUrl"] ?? "http://localhost:5081");
+    client.DefaultRequestHeaders.Add("X-Api-Key", config["WebApiKey"] ?? "");
+});
+
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IMenuService, MenuService>();
 builder.Services.AddScoped<IToppingService, ToppingService>();

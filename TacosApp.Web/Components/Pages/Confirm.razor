@@ -1,0 +1,116 @@
+@page "/confirm"
+@inject CartService CartSvc
+@inject OrderService OrderSvc
+@inject IHttpContextAccessor HttpContextAccessor
+@inject NavigationManager Nav
+
+<PageTitle>注文確認 — 🌮 タコスデリバリー</PageTitle>
+<h2 class="mb-4">注文確認</h2>
+
+@if (info == null || cart == null)
+{
+    <p>情報が見つかりません。<a href="/checkout">入力画面へ戻る</a></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <h5>お届け先</h5>
+            <dl class="row">
+                <dt class="col-sm-4">お名前</dt><dd class="col-sm-8">@info.CustomerName</dd>
+                <dt class="col-sm-4">電話番号</dt><dd class="col-sm-8">@info.Phone</dd>
+                <dt class="col-sm-4">住所</dt><dd class="col-sm-8" style="white-space:pre-wrap">@info.DeliveryAddress</dd>
+                @if (!string.IsNullOrWhiteSpace(info.DeliveryNote))
+                {
+                    <dt class="col-sm-4">備考</dt><dd class="col-sm-8" style="white-space:pre-wrap">@info.DeliveryNote</dd>
+                }
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <h5>ご注文内容</h5>
+            <table class="table table-sm">
+                <thead><tr><th>商品</th><th class="text-end">小計</th></tr></thead>
+                <tbody>
+                    @foreach (var item in cart.Items)
+                    {
+                        <tr>
+                            <td>
+                                @item.MenuName × @item.Quantity
+                                @if (item.Toppings.Any())
+                                {
+                                    <br /><small class="text-muted">@string.Join("、", item.Toppings.Select(t => t.Name))</small>
+                                }
+                            </td>
+                            <td class="text-end">¥@item.SubTotal.ToString("N0")</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr class="fw-bold">
+                        <td>合計</td>
+                        <td class="text-end text-taco">¥@cart.Total.ToString("N0")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <form method="post" @formname="place-order">
+        <AntiforgeryToken />
+        <button type="submit" class="btn btn-taco btn-lg">注文を確定する</button>
+        <a href="/checkout" class="btn btn-outline-secondary ms-2">修正する</a>
+    </form>
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger mt-3">@errorMessage</div>
+    }
+}
+
+@code {
+    private CheckoutViewModel? info;
+    private CartViewModel? cart;
+    private string? errorMessage;
+
+    [SupplyParameterFromForm(FormName = "place-order")]
+    public PlaceOrderModel? PlaceData { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var json = HttpContextAccessor.HttpContext?.Session.GetString("CheckoutInfo");
+        if (json == null) { Nav.NavigateTo("/checkout"); return; }
+
+        info = JsonConvert.DeserializeObject<CheckoutViewModel>(json);
+        cart = CartSvc.GetCart();
+
+        if (cart == null || !cart.Items.Any()) { Nav.NavigateTo("/cart"); return; }
+
+        if (PlaceData != null)
+        {
+            PlaceOrder();
+        }
+    }
+
+    private Task PlaceOrder()
+    {
+        try
+        {
+            var order = OrderSvc.CreateOrder(
+                cart!,
+                info!.CustomerName ?? "",
+                info!.Phone ?? "",
+                info!.DeliveryAddress ?? "",
+                info!.DeliveryNote ?? "");
+            CartSvc.Clear();
+            HttpContextAccessor.HttpContext!.Session.Remove("CheckoutInfo");
+            Nav.NavigateTo($"/complete/{order.OrderNumber}");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"注文処理中にエラーが発生しました: {ex.Message}";
+        }
+        return Task.CompletedTask;
+    }
+
+    public class PlaceOrderModel { } // marker
+}

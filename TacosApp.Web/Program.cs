@@ -35,6 +35,7 @@ builder.Services.AddHttpContextAccessor();
 // アプリケーションサービス
 builder.Services.AddScoped<CartService>();
 builder.Services.AddScoped<OrderService>();
+builder.Services.AddSingleton<OrderStatusNotificationService>();
 
 // Web API フィルター (ServiceFilter で DI 対応)
 builder.Services.AddScoped<ApiKeyAuthFilter>();
@@ -63,6 +64,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+// Content/images/ フォルダーを /images/ パスで配信（DB の ImageUrl と対応）
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Content", "images")),
+    RequestPath = "/images"
+});
 
 app.UseRouting();
 app.UseCors("AdminPolicy");

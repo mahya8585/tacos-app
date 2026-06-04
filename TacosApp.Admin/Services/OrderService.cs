@@ -1,3 +1,4 @@
+using System.Net.Http.Json;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using TacosApp.Admin.Data;
@@ -9,6 +10,7 @@ namespace TacosApp.Admin.Services;
 public sealed class OrderService(
     AdminDbContext db,
     IHubContext<AdminOrderHub> hub,
+    IHttpClientFactory httpClientFactory,
     ILogger<OrderService> logger) : IOrderService
 {
     public async Task<IReadOnlyList<Order>> GetAllAsync(OrderStatus? filter = null, CancellationToken ct = default)
@@ -56,6 +58,20 @@ public sealed class OrderService(
             StatusLabel = order.Status.ToString(),
             UpdatedAt = order.UpdatedAt
         }, ct);
+
+        // TacosApp.Web の OrderStatusNotificationService を通じて顧客ブラウザに通知
+        try
+        {
+            var webClient = httpClientFactory.CreateClient("TacosWeb");
+            await webClient.PutAsJsonAsync(
+                $"api/orders/{orderId}/status",
+                new { Status = (int)newStatus },
+                ct);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Failed to notify TacosApp.Web of status change for order {OrderId}", orderId);
+        }
 
         return true;
     }

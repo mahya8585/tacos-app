@@ -1,0 +1,96 @@
+@page "/cart"
+@inject CartService CartSvc
+@inject NavigationManager Nav
+
+<PageTitle>カート — 🌮 タコスデリバリー</PageTitle>
+<h2 class="mb-4">🛒 カート</h2>
+
+@if (cart == null || !cart.Items.Any())
+{
+    <div class="text-center py-5">
+        <p class="text-muted fs-5">カートは空です。</p>
+        <a href="/" class="btn btn-taco">メニューを見る</a>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-8">
+            @foreach (var item in cart.Items)
+            {
+                <div class="cart-item card mb-3">
+                    <div class="card-body d-flex align-items-center gap-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">@item.MenuName</h6>
+                            @if (item.Toppings.Any())
+                            {
+                                <small class="text-muted">トッピング: @string.Join("、", item.Toppings.Select(t => t.Name))</small>
+                            }
+                            <div class="fw-bold text-taco mt-1">¥@item.SubTotal.ToString("N0")</div>
+                        </div>
+                        <!-- 数量更新フォーム -->
+                        <form method="post" @formname="update-qty" class="d-flex align-items-center gap-1">
+                            <AntiforgeryToken />
+                            <input type="hidden" name="UpdateData.ItemKey" value="@item.ItemKey" />
+                            <div class="input-group qty-control" style="max-width:130px">
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        onclick="adjustQty(this, -1)">－</button>
+                                <input type="number" name="UpdateData.Quantity" value="@item.Quantity"
+                                       min="1" max="10" class="form-control form-control-sm text-center"
+                                       onchange="this.form.submit()" />
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        onclick="adjustQty(this, 1)">＋</button>
+                            </div>
+                        </form>
+                        <!-- 削除フォーム -->
+                        <form method="post" @formname="remove-item">
+                            <AntiforgeryToken />
+                            <input type="hidden" name="RemoveData.ItemKey" value="@item.ItemKey" />
+                            <button type="submit" class="btn btn-sm text-danger" title="削除">🗑</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>合計</h5>
+                    <p class="fs-4 fw-bold text-taco">¥@cart.Total.ToString("N0")</p>
+                    <a href="/checkout" class="btn btn-taco w-100">ご注文手続きへ</a>
+                    <a href="/" class="btn btn-outline-secondary w-100 mt-2">買い物を続ける</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private CartViewModel? cart;
+
+    [SupplyParameterFromForm(FormName = "remove-item")]
+    public RemoveItemModel? RemoveData { get; set; }
+
+    [SupplyParameterFromForm(FormName = "update-qty")]
+    public UpdateQtyModel? UpdateData { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (RemoveData?.ItemKey != null)
+        {
+            CartSvc.RemoveItem(RemoveData.ItemKey);
+            Nav.NavigateTo("/cart");
+            return;
+        }
+        if (UpdateData?.ItemKey != null)
+        {
+            CartSvc.UpdateQuantity(UpdateData.ItemKey, UpdateData.Quantity);
+            Nav.NavigateTo("/cart");
+            return;
+        }
+        cart = CartSvc.GetCart();
+    }
+
+    public class RemoveItemModel { public string? ItemKey { get; set; } }
+    public class UpdateQtyModel { public string? ItemKey { get; set; } public int Quantity { get; set; } }
+}

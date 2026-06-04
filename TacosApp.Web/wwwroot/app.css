@@ -1,0 +1,123 @@
+/* ===== タコスデリバリー カスタムスタイル ===== */
+
+:root {
+    --taco-primary: #e05c2f;
+    --taco-dark: #b33f1a;
+    --taco-light: #fdf3ec;
+}
+
+/* ナビゲーション */
+.bg-taco {
+    background-color: var(--taco-primary) !important;
+}
+
+.btn-taco {
+    background-color: var(--taco-primary);
+    border-color: var(--taco-primary);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-taco:hover {
+    background-color: var(--taco-dark);
+    border-color: var(--taco-dark);
+    color: #fff;
+}
+
+.text-taco {
+    color: var(--taco-primary) !important;
+}
+
+/* メニューカード */
+.menu-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.menu-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.price-tag {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--taco-primary);
+    margin-bottom: 0;
+}
+
+/* カートアイテム */
+.cart-item {
+    border-left: 4px solid var(--taco-primary);
+}
+
+/* 注文ステータスタイムライン */
+.status-timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.status-timeline::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #dee2e6;
+    z-index: 0;
+}
+
+.status-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.step-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+}
+
+.status-step.done .step-icon {
+    background-color: var(--taco-primary);
+}
+
+.status-step.active .step-icon {
+    box-shadow: 0 0 0 4px rgba(224, 92, 47, 0.35);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(224, 92, 47, 0.35); }
+    50% { box-shadow: 0 0 0 8px rgba(224, 92, 47, 0.15); }
+}
+
+.step-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.status-step.done .step-label,
+.status-step.active .step-label {
+    color: var(--taco-primary);
+}
+
+/* QTY ボタン */
+.qty-control .form-control { min-width: 50px; }

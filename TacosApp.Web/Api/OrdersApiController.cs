@@ -9,6 +9,7 @@ using TacosApp.Web.Filters;
 using TacosApp.Web.Hubs;
 using TacosApp.Web.Models.Api;
 using TacosApp.Web.Models.Domain;
+using TacosApp.Web.Services;
 
 namespace TacosApp.Web.Api
 {
@@ -19,11 +20,14 @@ namespace TacosApp.Web.Api
     {
         private readonly TacosDbContext _db;
         private readonly IHubContext<OrderStatusHub> _hubContext;
+        private readonly OrderStatusNotificationService _notifySvc;
 
-        public OrdersApiController(TacosDbContext db, IHubContext<OrderStatusHub> hubContext)
+        public OrdersApiController(TacosDbContext db, IHubContext<OrderStatusHub> hubContext,
+            OrderStatusNotificationService notifySvc)
         {
             _db = db;
             _hubContext = hubContext;
+            _notifySvc = notifySvc;
         }
 
         // GET api/orders
@@ -89,6 +93,9 @@ namespace TacosApp.Web.Api
             // SignalR でブラウザに即時通知
             _hubContext.Clients.Group(order.OrderNumber)
                 .SendAsync("statusUpdated", request.Status, GetStatusLabel(newStatus));
+
+            // Blazor Server コンポーネントに即時通知
+            _notifySvc.NotifyStatusUpdate(order.OrderNumber, request.Status, GetStatusLabel(newStatus));
 
             return Ok(MapToDto(order));
         }

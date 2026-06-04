@@ -1,0 +1,160 @@
+@page "/"
+@inject TacosDbContext Db
+@inject CartService CartSvc
+@inject NavigationManager Nav
+
+<PageTitle>メニュー — 🌮 タコスデリバリー</PageTitle>
+
+@if (menus == null)
+{
+    <p>読み込み中...</p>
+}
+else
+{
+    <h2 class="mb-4">🌮 メニュー</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var menu in menus)
+        {
+            <div class="col">
+                <div class="card menu-card h-100">
+                    <img src="@menu.ImageUrl" class="card-img-top menu-img"
+                         alt="@menu.Name" onerror="this.src='/images/taco-placeholder.jpg'" />
+                    <div class="card-body">
+                        <h5 class="card-title">@menu.Name</h5>
+                        <p class="card-text text-muted small">@menu.Description</p>
+                        <p class="price-tag">¥@menu.Price.ToString("N0")</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <button class="btn btn-taco w-100"
+                                data-bs-toggle="modal" data-bs-target="#toppingModal"
+                                data-menu-id="@menu.MenuId"
+                                data-menu-name="@menu.Name"
+                                data-menu-price="@menu.Price">
+                            🛒 カートに追加
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Bootstrap 5 トッピング選択モーダル -->
+    <div class="modal fade" id="toppingModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-taco text-white">
+                    <h5 class="modal-title" id="modalMenuDisplay">商品選択</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="post" @formname="add-to-cart">
+                    <AntiforgeryToken />
+                    <input type="hidden" name="AddForm.MenuId" id="formMenuId" value="" />
+                    <input type="hidden" name="AddForm.MenuName" id="formMenuName" value="" />
+                    <input type="hidden" name="AddForm.MenuPrice" id="formMenuPrice" value="" />
+                    <div class="modal-body">
+                        @if (toppings != null && toppings.Any())
+                        {
+                            <h6>トッピング（複数選択可）</h6>
+                            @foreach (var t in toppings)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input topping-check"
+                                           type="checkbox" name="AddForm.ToppingIds"
+                                           value="@t.ToppingId" id="topping-@t.ToppingId"
+                                           data-price="@t.Price" />
+                                    <label class="form-check-label" for="topping-@t.ToppingId">
+                                        @t.Name <span class="text-muted small">+¥@t.Price.ToString("N0")</span>
+                                    </label>
+                                </div>
+                            }
+                        }
+                        <div class="mt-3">
+                            <label class="form-label">数量</label>
+                            <div class="input-group" style="max-width:160px">
+                                <button type="button" class="btn btn-outline-secondary" id="qtyMinus">－</button>
+                                <input type="number" name="AddForm.Quantity" id="itemQty"
+                                       class="form-control text-center" value="1" min="1" max="10" />
+                                <button type="button" class="btn btn-outline-secondary" id="qtyPlus">＋</button>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-end fw-bold">小計: <span id="itemSubTotal">¥0</span></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                        <button type="submit" class="btn btn-taco">カートに追加</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<Menu>? menus;
+    private List<Topping>? toppings;
+
+    [SupplyParameterFromForm(FormName = "add-to-cart")]
+    public AddToCartFormModel? AddForm { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AddForm != null && AddForm.MenuId > 0)
+        {
+            await HandleAddToCart();
+            return;
+        }
+
+        menus = await Db.Menus
+            .Where(m => m.IsAvailable)
+            .OrderBy(m => m.DisplayOrder)
+            .ToListAsync();
+
+        toppings = await Db.Toppings
+            .Where(t => t.IsAvailable)
+            .OrderBy(t => t.DisplayOrder)
+            .ToListAsync();
+    }
+
+    private async Task HandleAddToCart()
+    {
+        if (AddForm == null) return;
+
+        var dbToppings = new List<CartToppingViewModel>();
+        if (AddForm.ToppingIds?.Any() == true)
+        {
+            var selected = await Db.Toppings
+                .Where(t => AddForm.ToppingIds.Contains(t.ToppingId))
+                .ToListAsync();
+            dbToppings = selected.Select(t => new CartToppingViewModel
+            {
+                ToppingId = t.ToppingId,
+                Name = t.Name,
+                Price = t.Price
+            }).ToList();
+        }
+
+        string toppingKey = string.Join("_", (AddForm.ToppingIds ?? new List<int>()).OrderBy(id => id));
+        string itemKey = $"{AddForm.MenuId}_{toppingKey}";
+
+        CartSvc.AddItem(new CartItemViewModel
+        {
+            ItemKey = itemKey,
+            MenuId = AddForm.MenuId,
+            MenuName = AddForm.MenuName ?? "",
+            MenuPrice = AddForm.MenuPrice,
+            Quantity = AddForm.Quantity > 0 ? AddForm.Quantity : 1,
+            Toppings = dbToppings
+        });
+
+        Nav.NavigateTo("/");
+    }
+
+    public class AddToCartFormModel
+    {
+        public int MenuId { get; set; }
+        public string? MenuName { get; set; }
+        public decimal MenuPrice { get; set; }
+        public int Quantity { get; set; } = 1;
+        public List<int>? ToppingIds { get; set; }
+    }
+}

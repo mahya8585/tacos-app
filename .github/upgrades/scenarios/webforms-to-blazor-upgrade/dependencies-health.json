@@ -1,0 +1,1183 @@
+{
+  "packageGovernance": {
+    "totalDistinctPackages": 26,
+    "totalVersionDriftInstances": 0,
+    "targetFramework": "net10.0",
+    "packages": [
+      {
+        "name": "Antlr",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "3.5.0.2",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "3.5.0.2",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "bootstrap",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "4.6.2",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "4.6.2",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "EntityFramework",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "6.4.4",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "6.4.4",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "jQuery",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "3.7.1",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "3.7.1",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.Cors",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "5.3.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "5.3.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.Mvc",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "5.3.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "5.3.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.Razor",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "3.2.9",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "3.2.9",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.SignalR",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "2.4.3",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "2.4.3",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.SignalR.Core",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "2.4.3",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "2.4.3",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.SignalR.JS",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "2.4.3",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "2.4.3",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.SignalR.SystemWeb",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "2.4.3",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "2.4.3",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.Web.Optimization",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "1.1.3",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "1.1.3",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.WebApi",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "5.3.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "5.3.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.WebApi.Client",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "6.0.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "6.0.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.WebApi.Core",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "5.3.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "5.3.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.WebApi.Cors",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "5.3.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "5.3.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.WebApi.WebHost",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "5.3.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "5.3.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.AspNet.WebPages",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "3.2.9",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "3.2.9",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.jQuery.Unobtrusive.Validation",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "3.2.12",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "3.2.12",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.Owin",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "4.2.2",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "4.2.2",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.Owin.Host.SystemWeb",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "4.2.2",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "4.2.2",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.Owin.Security",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "4.2.2",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "4.2.2",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.Web.Infrastructure",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "2.0.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "2.0.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Newtonsoft.Json",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "13.0.3",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "13.0.3",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Owin",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "1.0.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "1.0.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "WebGrease",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "1.6.0",
+        "isCompatible": false,
+        "versions": [
+          {
+            "version": "1.6.0",
+            "projects": [
+              "TacosApp.Web"
+            ],
+            "isRecommended": true
+          }
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "name": "TacosApp.Web",
+      "path": "TacosApp.Web.csproj",
+      "isSdk": false,
+      "currentFrameworks": [
+        "net48"
+      ],
+      "targetFramework": "net10.0",
+      "dependencies": {
+        "packages": [
+          {
+            "name": "Antlr",
+            "version": "3.5.0.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "bootstrap",
+            "version": "4.6.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "EntityFramework",
+            "version": "6.4.4",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "jQuery",
+            "version": "3.7.1",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.Cors",
+            "version": "5.3.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.Mvc",
+            "version": "5.3.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.Razor",
+            "version": "3.2.9",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.SignalR",
+            "version": "2.4.3",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.SignalR.Core",
+            "version": "2.4.3",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.SignalR.JS",
+            "version": "2.4.3",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.SignalR.SystemWeb",
+            "version": "2.4.3",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.Web.Optimization",
+            "version": "1.1.3",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.WebApi",
+            "version": "5.3.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.WebApi.Client",
+            "version": "6.0.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.WebApi.Core",
+            "version": "5.3.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.WebApi.Cors",
+            "version": "5.3.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.WebApi.WebHost",
+            "version": "5.3.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.AspNet.WebPages",
+            "version": "3.2.9",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.jQuery.Unobtrusive.Validation",
+            "version": "3.2.12",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.Owin",
+            "version": "4.2.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.Owin.Host.SystemWeb",
+            "version": "4.2.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.Owin.Security",
+            "version": "4.2.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Microsoft.Web.Infrastructure",
+            "version": "2.0.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Newtonsoft.Json",
+            "version": "13.0.3",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "Owin",
+            "version": "1.0.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          },
+          {
+            "name": "WebGrease",
+            "version": "1.6.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "packages.config"
+              }
+            ],
+            "compatibility": "unknown"
+          }
+        ],
+        "assemblies": [
+          {
+            "name": "EntityFramework",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\EntityFramework.6.4.4\\lib\\net45\\EntityFramework.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "EntityFramework.SqlServer",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\EntityFramework.6.4.4\\lib\\net45\\EntityFramework.SqlServer.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "Microsoft.AspNet.SignalR.Core",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.SignalR.Core.2.4.3\\lib\\net45\\Microsoft.AspNet.SignalR.Core.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "Microsoft.Owin",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.Owin.4.2.2\\lib\\net45\\Microsoft.Owin.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "Microsoft.Owin.Host.SystemWeb",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.Owin.Host.SystemWeb.4.2.2\\lib\\net45\\Microsoft.Owin.Host.SystemWeb.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "Microsoft.Owin.Security",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.Owin.Security.4.2.2\\lib\\net45\\Microsoft.Owin.Security.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "Newtonsoft.Json",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Newtonsoft.Json.13.0.3\\lib\\net45\\Newtonsoft.Json.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "Owin",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Owin.1.0\\lib\\net40\\Owin.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Net.Http",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Net.Http.Formatting",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.WebApi.Client.6.0.0\\lib\\net45\\System.Net.Http.Formatting.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "Microsoft.CSharp",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.Http",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.WebApi.Core.5.3.0\\lib\\net45\\System.Web.Http.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.Cors",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.Cors.5.3.0\\lib\\net45\\System.Web.Cors.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.Http.Cors",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.WebApi.Cors.5.3.0\\lib\\net45\\System.Web.Http.Cors.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.Http.WebHost",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.WebApi.WebHost.5.3.0\\lib\\net45\\System.Web.Http.WebHost.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.Mvc",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.Mvc.5.3.0\\lib\\net45\\System.Web.Mvc.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.Optimization",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.Web.Optimization.1.1.3\\lib\\net40\\System.Web.Optimization.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.Razor",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.Razor.3.2.9\\lib\\net45\\System.Web.Razor.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.WebPages",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.WebPages.3.2.9\\lib\\net45\\System.Web.WebPages.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.WebPages.Razor",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.WebPages.3.2.9\\lib\\net45\\System.Web.WebPages.Razor.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.WebPages.Deployment",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.AspNet.WebPages.3.2.9\\lib\\net45\\System.Web.WebPages.Deployment.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "Microsoft.Web.Infrastructure",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\Microsoft.Web.Infrastructure.2.0.0\\lib\\net40\\Microsoft.Web.Infrastructure.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "WebGrease",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "physicalPath": "c:\\local-m\\github\\tacos-app\\packages\\WebGrease.1.6.0\\lib\\WebGrease.dll",
+            "compatibility": "valid"
+          },
+          {
+            "name": "System",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.ComponentModel.DataAnnotations",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Configuration",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Core",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Data",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Data.DataSetExtensions",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.ApplicationServices",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Web.Extensions",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Xml",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          },
+          {
+            "name": "System.Xml.Linq",
+            "version": "",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "TacosApp.Web.csproj"
+              }
+            ],
+            "compatibility": "valid"
+          }
+        ],
+        "projectReferences": [],
+        "frameworkReferences": []
+      },
+      "imports": [
+        {
+          "path": "TacosApp.Web.csproj.user",
+          "isLocal": true
+        }
+      ]
+    }
+  ]
+}
