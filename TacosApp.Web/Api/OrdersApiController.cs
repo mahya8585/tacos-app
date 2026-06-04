@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using TacosApp.Web.Data;
 using TacosApp.Web.Filters;
 using TacosApp.Web.Hubs;
@@ -11,27 +12,29 @@ using TacosApp.Web.Models.Domain;
 
 namespace TacosApp.Web.Api
 {
-    [ApiKeyAuthFilter]
-    [RoutePrefix("api/orders")]
-    public class OrdersApiController : ApiController
+    [ServiceFilter(typeof(ApiKeyAuthFilter))]
+    [ApiController]
+    [Route("api/orders")]
+    public class OrdersApiController : ControllerBase
     {
         private readonly TacosDbContext _db;
+        private readonly IHubContext<OrderStatusHub> _hubContext;
 
-        public OrdersApiController()
+        public OrdersApiController(TacosDbContext db, IHubContext<OrderStatusHub> hubContext)
         {
-            _db = new TacosDbContext();
+            _db = db;
+            _hubContext = hubContext;
         }
 
         // GET api/orders
-        [HttpGet, Route("")]
-        public IHttpActionResult GetOrders()
+        [HttpGet("")]
+        public IActionResult GetOrders()
         {
-            IQueryable<Order> query = from o in _db.Orders
-                                          .Include("Items.Menu")
-                                          .Include("Items.Toppings.Topping")
-                                      orderby o.OrderedAt descending
-                                      select o;
-            List<Order> orders = query.ToList();
+            List<Order> orders = _db.Orders
+                .Include(o => o.Items).ThenInclude(i => i.Menu)
+                .Include(o => o.Items).ThenInclude(i => i.Toppings).ThenInclude(t => t.Topping)
+                .OrderByDescending(o => o.OrderedAt)
+                .ToList();
 
             List<OrderDto> dtoList = new List<OrderDto>();
             foreach (Order order in orders)
@@ -42,15 +45,13 @@ namespace TacosApp.Web.Api
         }
 
         // GET api/orders/{id}
-        [HttpGet, Route("{id:int}")]
-        public IHttpActionResult GetOrder(int id)
+        [HttpGet("{id:int}")]
+        public IActionResult GetOrder(int id)
         {
-            IQueryable<Order> query = from o in _db.Orders
-                                          .Include("Items.Menu")
-                                          .Include("Items.Toppings.Topping")
-                                      where o.OrderId == id
-                                      select o;
-            Order order = query.FirstOrDefault();
+            Order? order = _db.Orders
+                .Include(o => o.Items).ThenInclude(i => i.Menu)
+                .Include(o => o.Items).ThenInclude(i => i.Toppings).ThenInclude(t => t.Topping)
+                .FirstOrDefault(o => o.OrderId == id);
 
             if (order == null)
             {
@@ -61,8 +62,8 @@ namespace TacosApp.Web.Api
         }
 
         // PUT api/orders/{id}/status
-        [HttpPut, Route("{id:int}/status")]
-        public IHttpActionResult UpdateStatus(int id, [FromBody] UpdateStatusRequest request)
+        [HttpPut("{id:int}/status")]
+        public IActionResult UpdateStatus(int id, [FromBody] UpdateStatusRequest request)
         {
             if (request == null)
             {
@@ -74,7 +75,7 @@ namespace TacosApp.Web.Api
                 return BadRequest("ステータス値は 0〜3 の範囲で指定してください。");
             }
 
-            Order order = _db.Orders.Find(id);
+            Order? order = _db.Orders.Find(id);
             if (order == null)
             {
                 return NotFound();
@@ -86,8 +87,8 @@ namespace TacosApp.Web.Api
             _db.SaveChanges();
 
             // SignalR でブラウザに即時通知
-            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<OrderStatusHub>();
-            hubContext.Clients.Group(order.OrderNumber).statusUpdated(request.Status, GetStatusLabel(newStatus));
+            _hubContext.Clients.Group(order.OrderNumber)
+                .SendAsync("statusUpdated", request.Status, GetStatusLabel(newStatus));
 
             return Ok(MapToDto(order));
         }
@@ -149,13 +150,5 @@ namespace TacosApp.Web.Api
             }
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using TacosApp.Web.Data;
 using TacosApp.Web.Models.Domain;
 using TacosApp.Web.Models.ViewModels;
@@ -65,39 +65,43 @@ namespace TacosApp.Web.Services
             return order;
         }
 
-        public Order GetByOrderNumber(string orderNumber)
+        public Order? GetByOrderNumber(string orderNumber)
         {
-            IQueryable<Order> query = from o in _db.Orders
-                                          .Include("Items.Toppings.Topping")
-                                          .Include("Items.Menu")
-                                      where o.OrderNumber == orderNumber
-                                      select o;
-            return query.FirstOrDefault();
+            return _db.Orders
+                .Include(o => o.Items)
+                    .ThenInclude(i => i.Toppings)
+                        .ThenInclude(t => t.Topping)
+                .Include(o => o.Items)
+                    .ThenInclude(i => i.Menu)
+                .FirstOrDefault(o => o.OrderNumber == orderNumber);
         }
 
-        public Order GetById(int orderId)
+        public Order? GetById(int orderId)
         {
-            IQueryable<Order> query = from o in _db.Orders
-                                          .Include("Items.Toppings.Topping")
-                                          .Include("Items.Menu")
-                                      where o.OrderId == orderId
-                                      select o;
-            return query.FirstOrDefault();
+            return _db.Orders
+                .Include(o => o.Items)
+                    .ThenInclude(i => i.Toppings)
+                        .ThenInclude(t => t.Topping)
+                .Include(o => o.Items)
+                    .ThenInclude(i => i.Menu)
+                .FirstOrDefault(o => o.OrderId == orderId);
         }
 
         public List<Order> GetAll()
         {
-            IQueryable<Order> query = from o in _db.Orders
-                                          .Include("Items.Toppings.Topping")
-                                          .Include("Items.Menu")
-                                      orderby o.OrderedAt descending
-                                      select o;
-            return query.ToList();
+            return _db.Orders
+                .Include(o => o.Items)
+                    .ThenInclude(i => i.Toppings)
+                        .ThenInclude(t => t.Topping)
+                .Include(o => o.Items)
+                    .ThenInclude(i => i.Menu)
+                .OrderByDescending(o => o.OrderedAt)
+                .ToList();
         }
 
-        public Order UpdateStatus(int orderId, OrderStatus newStatus)
+        public Order? UpdateStatus(int orderId, OrderStatus newStatus)
         {
-            Order order = _db.Orders.Find(orderId);
+            Order? order = _db.Orders.Find(orderId);
             if (order == null)
             {
                 return null;

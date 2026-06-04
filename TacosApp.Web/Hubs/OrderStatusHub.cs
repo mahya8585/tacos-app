@@ -1,4 +1,4 @@
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.SignalR;
 
 namespace TacosApp.Web.Hubs
 {
@@ -10,25 +10,23 @@ namespace TacosApp.Web.Hubs
     public class OrderStatusHub : Hub
     {
         /// <summary>顧客ブラウザが注文番号グループに参加する</summary>
-        public void JoinOrderGroup(string orderNumber)
+        public async Task JoinOrderGroup(string orderNumber)
         {
             if (string.IsNullOrWhiteSpace(orderNumber))
             {
                 return;
             }
-            // SignalR 2 の Groups.Add は Task を返すが、レガシースタイルでは
-            // 戻り値の Task を同期待ちして完了を保証する。
-            Groups.Add(Context.ConnectionId, orderNumber).Wait();
+            await Groups.AddToGroupAsync(Context.ConnectionId, orderNumber);
         }
 
         /// <summary>顧客ブラウザがグループから離脱する（ページ離脱時）</summary>
-        public void LeaveOrderGroup(string orderNumber)
+        public async Task LeaveOrderGroup(string orderNumber)
         {
             if (string.IsNullOrWhiteSpace(orderNumber))
             {
                 return;
             }
-            Groups.Remove(Context.ConnectionId, orderNumber).Wait();
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, orderNumber);
         }
     }
 }

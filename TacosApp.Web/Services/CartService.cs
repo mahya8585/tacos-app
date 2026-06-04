@@ -1,4 +1,4 @@
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using TacosApp.Web.Models.ViewModels;
 
@@ -8,22 +8,22 @@ namespace TacosApp.Web.Services
     public class CartService
     {
         private const string SessionKey = "TacosCart";
-        private readonly HttpSessionStateBase _session;
+        private readonly ISession _session;
 
-        public CartService(HttpSessionStateBase session)
+        public CartService(IHttpContextAccessor httpContextAccessor)
         {
-            _session = session;
+            _session = httpContextAccessor.HttpContext!.Session;
         }
 
         public CartViewModel GetCart()
         {
-            string json = _session[SessionKey] as string;
+            string? json = _session.GetString(SessionKey);
             if (string.IsNullOrEmpty(json))
             {
                 return new CartViewModel();
             }
 
-            CartViewModel cart = JsonConvert.DeserializeObject<CartViewModel>(json);
+            CartViewModel? cart = JsonConvert.DeserializeObject<CartViewModel>(json);
             if (cart == null)
             {
                 return new CartViewModel();
@@ -108,7 +108,7 @@ namespace TacosApp.Web.Services
 
         private void Save(CartViewModel cart)
         {
-            _session[SessionKey] = JsonConvert.SerializeObject(cart);
+            _session.SetString(SessionKey, JsonConvert.SerializeObject(cart));
         }
     }
 }

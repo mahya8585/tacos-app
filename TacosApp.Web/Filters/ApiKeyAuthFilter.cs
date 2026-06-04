@@ -1,58 +1,55 @@
-using System.Collections.Generic;
-using System.Configuration;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Configuration;
 
 namespace TacosApp.Web.Filters
 {
     /// <summary>
-    /// Web API 用 API キー認証フィルター。
-    /// リクエストヘッダー "X-Api-Key" を Web.config の ApiKey と照合する。
+    /// ASP.NET Core Web API 用 API キー認証フィルター。
+    /// リクエストヘッダー "X-Api-Key" を appsettings.json の ApiKey と照合する。
     /// </summary>
-    public class ApiKeyAuthFilter : AuthorizationFilterAttribute
+    public class ApiKeyAuthFilter : IAuthorizationFilter
     {
-        public override void OnAuthorization(HttpActionContext actionContext)
+        private readonly IConfiguration _configuration;
+
+        public ApiKeyAuthFilter(IConfiguration configuration)
         {
-            string configuredKey = ConfigurationManager.AppSettings["ApiKey"];
+            _configuration = configuration;
+        }
+
+        public void OnAuthorization(AuthorizationFilterContext context)
+        {
+            string? configuredKey = _configuration["ApiKey"];
 
             // ApiKey が未設定の場合はサーバー側の設定ミスとして 500 を返す
             if (string.IsNullOrEmpty(configuredKey) ||
                 configuredKey == "CHANGE_THIS_IN_PRODUCTION_USE_STRONG_RANDOM_KEY")
             {
-                actionContext.Response = actionContext.Request.CreateErrorResponse(
-                    HttpStatusCode.InternalServerError,
-                    "API キーが設定されていません。Web.config を確認してください。");
+                context.Result = new ObjectResult("API キーが設定されていません。appsettings.json を確認してください。")
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError
+                };
                 return;
             }
 
-            IEnumerable<string> values;
-            if (!actionContext.Request.Headers.TryGetValues("X-Api-Key", out values))
+            if (!context.HttpContext.Request.Headers.TryGetValue("X-Api-Key", out var values))
             {
-                actionContext.Response = actionContext.Request.CreateErrorResponse(
-                    HttpStatusCode.Unauthorized,
-                    "X-Api-Key ヘッダーが必要です。");
+                context.Result = new UnauthorizedObjectResult("X-Api-Key ヘッダーが必要です。");
                 return;
             }
 
-            string provided = string.Join("", values);
+            string provided = values.ToString();
 
             // 定数時間比較でタイミング攻撃を防ぐ
             if (!ConstantTimeEquals(configuredKey, provided))
             {
-                actionContext.Response = actionContext.Request.CreateErrorResponse(
-                    HttpStatusCode.Unauthorized,
-                    "無効な API キーです。");
+                context.Result = new UnauthorizedObjectResult("無効な API キーです。");
             }
         }
 
         private static bool ConstantTimeEquals(string a, string b)
         {
-            if (a == null || b == null)
-            {
-                return false;
-            }
             if (a.Length != b.Length)
             {
                 return false;
