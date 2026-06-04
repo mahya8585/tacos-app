@@ -1,11 +1,11 @@
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using TacosApp.Web.Models.Domain;
 
 namespace TacosApp.Web.Data
 {
     public class TacosDbContext : DbContext
     {
-        public TacosDbContext() : base("name=TacosDb")
+        public TacosDbContext(DbContextOptions<TacosDbContext> options) : base(options)
         {
         }
 
@@ -15,7 +15,7 @@ namespace TacosApp.Web.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<OrderItemTopping> OrderItemToppings { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -32,7 +32,11 @@ namespace TacosApp.Web.Data
                 .IsRequired()
                 .HasMaxLength(30);
 
-            // decimal 精度の明示指定（SQL Server 2012 互換）
+            modelBuilder.Entity<Order>()
+                .HasIndex(o => o.OrderNumber)
+                .IsUnique();
+
+            // decimal 精度の明示指定
             modelBuilder.Entity<Menu>()
                 .Property(m => m.Price)
                 .HasPrecision(10, 0);
@@ -52,6 +56,9 @@ namespace TacosApp.Web.Data
             modelBuilder.Entity<OrderItemTopping>()
                 .Property(oit => oit.UnitPrice)
                 .HasPrecision(10, 0);
+
+            // シードデータ
+            TacosApp.Web.Data.Migrations.TacosDbContextSeed.SeedData(modelBuilder);
         }
     }
 }

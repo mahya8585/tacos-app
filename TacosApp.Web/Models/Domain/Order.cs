@@ -13,7 +13,6 @@ namespace TacosApp.Web.Models.Domain
         /// <summary>注文番号（例: TACOS-240101-000001）</summary>
         [Required]
         [StringLength(30)]
-        [Index(IsUnique = true)]
         public string OrderNumber { get; set; }
 
         [Required]
