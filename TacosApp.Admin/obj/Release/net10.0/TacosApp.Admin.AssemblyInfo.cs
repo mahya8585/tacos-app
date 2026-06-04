@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-TacosApp.Admin-626cae6c-50f8-47be-adb9-ee19fb9c40fa")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("TacosApp.Admin")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac5a758a7ca7fa7d7c873a8184472aa1ddf8ca8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TacosApp.Admin")]
