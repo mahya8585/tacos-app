@@ -1,4 +1,9 @@
 @inherits LayoutComponentBase
+@inject TacosApp.Web.Services.CartService CartSvc
+
+@{
+    var cartCount = CartSvc.GetCart().ItemCount;
+}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-taco">
     <div class="container">
@@ -14,7 +19,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/cart">
-                        🛒 カート <span class="badge bg-light text-dark" id="navCartCount">0</span>
+                        🛒 カート <span class="badge bg-light text-dark" id="navCartCount">@cartCount</span>
                     </a>
                 </li>
             </ul>

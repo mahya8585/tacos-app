@@ -87,6 +87,10 @@ else
             </div>
         </div>
     </div>
+
+    @* Layout は親コンポーネントのため Index の AddItem 完了より先にレンダーされる。
+       JS で navCartCount バッジを最新値に上書きすることで Layout の遅延を回避。 *@
+    <script>updateCartBadge(@CartSvc.GetCart().ItemCount);</script>
 }
 
 @code {
@@ -98,12 +102,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        if (AddForm != null && AddForm.MenuId > 0)
-        {
-            await HandleAddToCart();
-            return;
-        }
-
+        // メニュー・トッピングを常に先にロードしてフォームを DOM に確実に描画させる
+        // (フォームが描画されていないと Blazor SSR がフォームを見つけられずエラーになる)
         menus = await Db.Menus
             .Where(m => m.IsAvailable)
             .OrderBy(m => m.DisplayOrder)
@@ -113,6 +113,11 @@ else
             .Where(t => t.IsAvailable)
             .OrderBy(t => t.DisplayOrder)
             .ToListAsync();
+
+        if (AddForm != null && AddForm.MenuId > 0)
+        {
+            await HandleAddToCart();
+        }
     }
 
     private async Task HandleAddToCart()
@@ -146,7 +151,8 @@ else
             Toppings = dbToppings
         });
 
-        Nav.NavigateTo("/");
+        // 再 POST 防止 + 後段の <script> でバッジ更新
+        AddForm = null;
     }
 
     public class AddToCartFormModel
