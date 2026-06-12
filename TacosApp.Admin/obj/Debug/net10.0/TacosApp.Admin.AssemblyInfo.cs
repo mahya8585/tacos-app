@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TacosApp.Admin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9db773d746055a66b3fd388a1493637e22c5a690")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cca18b2a14e4e2247df6a7855e9f4705a956418")]
 [assembly: System.Reflection.AssemblyProductAttribute("TacosApp.Admin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TacosApp.Admin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

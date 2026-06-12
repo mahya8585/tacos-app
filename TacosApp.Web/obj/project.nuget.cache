@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "fxsvnSvUqEw=",
+  "dgSpecHash": "QTGbMM+UI1o=",
   "success": true,
   "projectFilePath": "C:\\local-m\\github\\tacos-app\\TacosApp.Web\\TacosApp.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maishid\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\maishid\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
     "C:\\Users\\maishid\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\maishid\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.8\\microsoft.aspnetcore.app.internal.assets.10.0.8.nupkg.sha512",
+    "C:\\Users\\maishid\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.9\\microsoft.aspnetcore.app.internal.assets.10.0.9.nupkg.sha512",
     "C:\\Users\\maishid\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\10.0.8\\microsoft.aspnetcore.jsonpatch.10.0.8.nupkg.sha512",
     "C:\\Users\\maishid\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\10.0.8\\microsoft.aspnetcore.mvc.newtonsoftjson.10.0.8.nupkg.sha512",
     "C:\\Users\\maishid\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
