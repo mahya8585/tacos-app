@@ -2,6 +2,7 @@
 @inject TacosDbContext Db
 @inject CartService CartSvc
 @inject NavigationManager Nav
+@inject ILogger<Index> Logger
 
 <PageTitle>メニュー — 🌮 タコスデリバリー</PageTitle>
 
@@ -12,6 +13,10 @@
 else
 {
     <h2 class="mb-4">🌮 メニュー</h2>
+    @if (!string.IsNullOrWhiteSpace(loadWarning))
+    {
+        <div class="alert alert-warning" role="alert">@loadWarning</div>
+    }
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach (var menu in menus)
         {
@@ -96,23 +101,35 @@ else
 @code {
     private List<Menu>? menus;
     private List<Topping>? toppings;
+    private string? loadWarning;
 
     [SupplyParameterFromForm(FormName = "add-to-cart")]
     public AddToCartFormModel? AddForm { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        // メニュー・トッピングを常に先にロードしてフォームを DOM に確実に描画させる
-        // (フォームが描画されていないと Blazor SSR がフォームを見つけられずエラーになる)
-        menus = await Db.Menus
-            .Where(m => m.IsAvailable)
-            .OrderBy(m => m.DisplayOrder)
-            .ToListAsync();
+        // DB 初期化前でもトップページを 500 にせず表示する
+        try
+        {
+            // メニュー・トッピングを常に先にロードしてフォームを DOM に確実に描画させる
+            // (フォームが描画されていないと Blazor SSR がフォームを見つけられずエラーになる)
+            menus = await Db.Menus
+                .Where(m => m.IsAvailable)
+                .OrderBy(m => m.DisplayOrder)
+                .ToListAsync();
 
-        toppings = await Db.Toppings
-            .Where(t => t.IsAvailable)
-            .OrderBy(t => t.DisplayOrder)
-            .ToListAsync();
+            toppings = await Db.Toppings
+                .Where(t => t.IsAvailable)
+                .OrderBy(t => t.DisplayOrder)
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Failed to load menu data.");
+            menus = new List<Menu>();
+            toppings = new List<Topping>();
+            loadWarning = "メニューを準備中です。しばらくしてから再読み込みしてください。";
+        }
 
         if (AddForm != null && AddForm.MenuId > 0)
         {

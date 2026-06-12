@@ -54,6 +54,19 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// 起動時にマイグレーションを適用し、シードデータ（HasData）を投入する
+try
+{
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<TacosDbContext>();
+    db.Database.Migrate();
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("Startup");
+    logger.LogError(ex, "Failed to apply database migrations at startup.");
+}
+
 // --- ミドルウェアパイプライン ---
 
 if (!app.Environment.IsDevelopment())
@@ -62,13 +75,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// HTTPS redirect is handled by the platform (Azure Container Apps ingress) in production.
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 app.UseStaticFiles();
 // Content/images/ フォルダーを /images/ パスで配信（DB の ImageUrl と対応）
+var imagesPath = Path.Combine(builder.Environment.ContentRootPath, "Content", "images");
+Directory.CreateDirectory(imagesPath);
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "Content", "images")),
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(imagesPath),
     RequestPath = "/images"
 });
 

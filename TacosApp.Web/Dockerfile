@@ -33,5 +33,7 @@ EXPOSE 8080
 
 COPY --from=build /app/publish ./
 
+RUN mkdir -p /app/Content/images && chown -R $APP_UID:$APP_UID /app/Content
+
 USER $APP_UID
 ENTRYPOINT ["dotnet", "TacosApp.Web.dll"]
